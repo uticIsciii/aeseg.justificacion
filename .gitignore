@@ -3,3 +3,7 @@
 ################################################################################
 
 /ClienteJustificacion/bin/Debug
+/ClienteJustificacion/obj/Debug
+/packages
+/ProxyJustificacionService/bin/Debug
+/ProxyJustificacionService/obj/Debug

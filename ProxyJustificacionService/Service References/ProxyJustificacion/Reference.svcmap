@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="61359823-dce1-4173-98dd-07f1f7a24877" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://aesegdes.isciiides.es/Services/Justificantes.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Justificantes.xsd" MetadataType="Schema" ID="b4860ecd-70c0-4808-b23d-9fcc52de6416" SourceId="1" SourceUrl="http://aesegdes.isciiides.es/Services/Justificantes.svc?xsd=xsd1" />
+    <MetadataFile FileName="JService.wsdl" MetadataType="Wsdl" ID="4ce55c7c-0762-48de-b9a9-2cdd57b5a2c2" SourceId="1" SourceUrl="http://aesegdes.isciiides.es/Services/Justificantes.svc?wsdl" />
+    <MetadataFile FileName="Justificantes.wsdl" MetadataType="Wsdl" ID="deeff522-b2f9-4d85-8441-22c229e2d9db" SourceId="1" SourceUrl="http://aesegdes.isciiides.es/Services/Justificantes.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="Justificantes1.xsd" MetadataType="Schema" ID="dd02be85-f667-40cf-bc89-01c478df614e" SourceId="1" SourceUrl="http://aesegdes.isciiides.es/Services/Justificantes.svc?xsd=xsd0" />
+    <MetadataFile FileName="Justificantes.disco" MetadataType="Disco" ID="038ad0c8-d70e-4332-aa17-e97f9f59920f" SourceId="1" SourceUrl="http://aesegdes.isciiides.es/Services/Justificantes.svc?disco" />
+    <MetadataFile FileName="Justificantes2.xsd" MetadataType="Schema" ID="37f59227-6f9f-4a53-8dd9-204565b9584b" SourceId="1" SourceUrl="http://aesegdes.isciiides.es/Services/Justificantes.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
