@@ -7,3 +7,8 @@
 /packages
 /ProxyJustificacionService/bin/Debug
 /ProxyJustificacionService/obj/Debug
+/ClienteJustificacion/bin
+/ClienteJustificacion/obj/Release
+/ProxyJustificacionService/bin/Release
+/ProxyJustificacionService/obj/Release
+/.vs/ClienteJustificacionAESEG/v14
