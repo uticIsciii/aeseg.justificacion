@@ -56,30 +56,19 @@ namespace ClienteJustificacion
             }
         }
 
-        /// <summary>
-        /// Bienes y servicios
-        /// </summary>
-        /// <param name="clientArgs"></param>
+
         static void ProcessJbs(ClientArgs clientArgs)
         {
             var records = LoadCsv<JbsInterchageModel, JbsInterchageModelCsvDocMap>(clientArgs.File);
             var result = SendRecords(records.Cast<JInterchageModel>().ToList());
         }
 
-        /// <summary>
-        /// Viajes
-        /// </summary>
-        /// <param name="clientArgs"></param>
         static void ProcessJviajes(ClientArgs clientArgs)
         {
             var records = LoadCsv<JviajeInterchageModel, JviajesInterchageModelCsvMap>(clientArgs.File);
             var result = SendRecords(records.Cast<JInterchageModel>().ToList());
         }
 
-        /// <summary>
-        /// RRHH
-        /// </summary>
-        /// <param name="clientArgs"></param>
         static void ProcessJpersonal(ClientArgs clientArgs)
         {
             var records = LoadCsv<JpersonalInterchageModel, JpersonalInterchageModelCsvMap>(clientArgs.File);
