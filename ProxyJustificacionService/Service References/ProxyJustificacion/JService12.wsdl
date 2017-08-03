@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://aeseg.isciii.es" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:i0="http://tempuri.org/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="JService" targetNamespace="http://aeseg.isciii.es" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsdl:import namespace="http://tempuri.org/" location="http://aesegdes.isciiides.es/Services/Justificantes.svc?wsdl=wsdl0" />
+  <wsdl:import namespace="http://tempuri.org/" location="http://aeseg.pre.isciii.es/Services/Justificantes.svc?wsdl=wsdl0" />
   <wsdl:types>
     <xsd:schema targetNamespace="http://aeseg.isciii.es/Imports">
-      <xsd:import schemaLocation="http://aesegdes.isciiides.es/Services/Justificantes.svc?xsd=xsd0" namespace="http://aeseg.isciii.es" />
-      <xsd:import schemaLocation="http://aesegdes.isciiides.es/Services/Justificantes.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://aesegdes.isciiides.es/Services/Justificantes.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ISCIII.AESEG.JustificationService" />
+      <xsd:import schemaLocation="http://aeseg.pre.isciii.es/Services/Justificantes.svc?xsd=xsd0" namespace="http://aeseg.isciii.es" />
+      <xsd:import schemaLocation="http://aeseg.pre.isciii.es/Services/Justificantes.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://aeseg.pre.isciii.es/Services/Justificantes.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ISCIII.AESEG.JustificationService" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IJustification_LoadJbs_InputMessage">
@@ -26,6 +26,18 @@
   <wsdl:message name="IJustification_LoadJviajes_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoadJviajesResponse" />
   </wsdl:message>
+  <wsdl:message name="IJustification_GetVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVersion" />
+  </wsdl:message>
+  <wsdl:message name="IJustification_GetVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJustification_Test_InputMessage">
+    <wsdl:part name="parameters" element="tns:Test" />
+  </wsdl:message>
+  <wsdl:message name="IJustification_Test_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestResponse" />
+  </wsdl:message>
   <wsdl:portType name="IJustification">
     <wsdl:operation name="LoadJbs">
       <wsdl:input wsaw:Action="http://aeseg.isciii.es/IJustification/LoadJbs" message="tns:IJustification_LoadJbs_InputMessage" />
@@ -39,12 +51,20 @@
       <wsdl:input wsaw:Action="http://aeseg.isciii.es/IJustification/LoadJviajes" message="tns:IJustification_LoadJviajes_InputMessage" />
       <wsdl:output wsaw:Action="http://aeseg.isciii.es/IJustification/LoadJviajesResponse" message="tns:IJustification_LoadJviajes_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <wsdl:input wsaw:Action="http://aeseg.isciii.es/IJustification/GetVersion" message="tns:IJustification_GetVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://aeseg.isciii.es/IJustification/GetVersionResponse" message="tns:IJustification_GetVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <wsdl:input wsaw:Action="http://aeseg.isciii.es/IJustification/Test" message="tns:IJustification_Test_InputMessage" />
+      <wsdl:output wsaw:Action="http://aeseg.isciii.es/IJustification/TestResponse" message="tns:IJustification_Test_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:service name="JService">
     <wsdl:port name="WSHttpBinding_IJustification" binding="i0:WSHttpBinding_IJustification">
-      <soap12:address location="http://aesegdes.isciiides.es/Services/Justificantes.svc" />
+      <soap12:address location="http://aeseg.pre.isciii.es/Services/Justificantes.svc" />
       <wsa10:EndpointReference>
-        <wsa10:Address>http://aesegdes.isciiides.es/Services/Justificantes.svc</wsa10:Address>
+        <wsa10:Address>http://aeseg.pre.isciii.es/Services/Justificantes.svc</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
           <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
             <X509Data>

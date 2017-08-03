@@ -7,7 +7,13 @@
           <xs:element minOccurs="0" name="BaseImponible" type="xs:decimal" />
           <xs:element minOccurs="0" name="DescripcionConcepto" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="FechaFactura" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FicheroBSFactura" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="FicheroBSOtros" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="FicheroBSPago" nillable="true" type="xs:base64Binary" />
           <xs:element minOccurs="0" name="NIF" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroBSFactura" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroBSOtros" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroBSPago" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="NombreProveedor" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="NumeroFactura" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="TipoImpositivo" type="xs:decimal" />
@@ -21,11 +27,9 @@
       <xs:element minOccurs="0" name="Anualidad" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="Expediente" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FechaPago" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Fichero" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="IdPartida" type="xs:int" />
       <xs:element minOccurs="0" name="ImporteImputado" type="xs:decimal" />
       <xs:element minOccurs="0" name="ImporteTotal" type="xs:decimal" />
-      <xs:element minOccurs="0" name="NombreFichero" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Observaciones" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="idConcepto" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="idTipoJustificante" type="xs:int" />
@@ -70,8 +74,14 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="FechaDesde" type="xs:dateTime" />
           <xs:element minOccurs="0" name="FechaHasta" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FicheroPerNomina" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="FicheroPerOtros" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="FicheroPerPago" nillable="true" type="xs:base64Binary" />
           <xs:element minOccurs="0" name="IdCategoriaLaboral" type="xs:int" />
           <xs:element minOccurs="0" name="Nif" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroPerNomina" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroPerOtros" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroPerPago" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -89,12 +99,18 @@
           <xs:element minOccurs="0" name="FechaFinViaje" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="0" name="FechaInicioCongreso" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="0" name="FechaInicioViaje" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FicheroViajeFactura" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="FicheroViajeOtros" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="FicheroViajePago" nillable="true" type="xs:base64Binary" />
           <xs:element minOccurs="0" name="IdPais" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="IdTipoGastoViaje" nillable="true" type="xs:int" />
           <xs:element minOccurs="0" name="IdTipoViaje" nillable="true" type="xs:int" />
           <xs:element minOccurs="0" name="Itinerario" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Nif" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="NifProveedor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroViajeFactura" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroViajeOtros" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroViajePago" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="NombreProveedor" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="NumeroFactura" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="TipoImpositivo" nillable="true" type="xs:decimal" />

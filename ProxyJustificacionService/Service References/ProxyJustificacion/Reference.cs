@@ -35,9 +35,6 @@ namespace Aeseg.ProxyJustificacion {
         private System.DateTime FechaPagoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] FicheroField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdPartidaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -45,9 +42,6 @@ namespace Aeseg.ProxyJustificacion {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private decimal ImporteTotalField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NombreFicheroField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ObservacionesField;
@@ -108,19 +102,6 @@ namespace Aeseg.ProxyJustificacion {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] Fichero {
-            get {
-                return this.FicheroField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FicheroField, value) != true)) {
-                    this.FicheroField = value;
-                    this.RaisePropertyChanged("Fichero");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public int IdPartida {
             get {
                 return this.IdPartidaField;
@@ -155,19 +136,6 @@ namespace Aeseg.ProxyJustificacion {
                 if ((this.ImporteTotalField.Equals(value) != true)) {
                     this.ImporteTotalField = value;
                     this.RaisePropertyChanged("ImporteTotal");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string NombreFichero {
-            get {
-                return this.NombreFicheroField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NombreFicheroField, value) != true)) {
-                    this.NombreFicheroField = value;
-                    this.RaisePropertyChanged("NombreFichero");
                 }
             }
         }
@@ -234,10 +202,28 @@ namespace Aeseg.ProxyJustificacion {
         private System.DateTime FechaHastaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] FicheroPerNominaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] FicheroPerOtrosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] FicheroPerPagoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdCategoriaLaboralField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NifField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreFicheroPerNominaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreFicheroPerOtrosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreFicheroPerPagoField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime FechaDesde {
@@ -266,6 +252,45 @@ namespace Aeseg.ProxyJustificacion {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] FicheroPerNomina {
+            get {
+                return this.FicheroPerNominaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FicheroPerNominaField, value) != true)) {
+                    this.FicheroPerNominaField = value;
+                    this.RaisePropertyChanged("FicheroPerNomina");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] FicheroPerOtros {
+            get {
+                return this.FicheroPerOtrosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FicheroPerOtrosField, value) != true)) {
+                    this.FicheroPerOtrosField = value;
+                    this.RaisePropertyChanged("FicheroPerOtros");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] FicheroPerPago {
+            get {
+                return this.FicheroPerPagoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FicheroPerPagoField, value) != true)) {
+                    this.FicheroPerPagoField = value;
+                    this.RaisePropertyChanged("FicheroPerPago");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int IdCategoriaLaboral {
             get {
                 return this.IdCategoriaLaboralField;
@@ -287,6 +312,45 @@ namespace Aeseg.ProxyJustificacion {
                 if ((object.ReferenceEquals(this.NifField, value) != true)) {
                     this.NifField = value;
                     this.RaisePropertyChanged("Nif");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NombreFicheroPerNomina {
+            get {
+                return this.NombreFicheroPerNominaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreFicheroPerNominaField, value) != true)) {
+                    this.NombreFicheroPerNominaField = value;
+                    this.RaisePropertyChanged("NombreFicheroPerNomina");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NombreFicheroPerOtros {
+            get {
+                return this.NombreFicheroPerOtrosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreFicheroPerOtrosField, value) != true)) {
+                    this.NombreFicheroPerOtrosField = value;
+                    this.RaisePropertyChanged("NombreFicheroPerOtros");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NombreFicheroPerPago {
+            get {
+                return this.NombreFicheroPerPagoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreFicheroPerPagoField, value) != true)) {
+                    this.NombreFicheroPerPagoField = value;
+                    this.RaisePropertyChanged("NombreFicheroPerPago");
                 }
             }
         }
@@ -323,6 +387,15 @@ namespace Aeseg.ProxyJustificacion {
         private System.Nullable<System.DateTime> FechaInicioViajeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] FicheroViajeFacturaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] FicheroViajeOtrosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] FicheroViajePagoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string IdPaisField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -339,6 +412,15 @@ namespace Aeseg.ProxyJustificacion {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NifProveedorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreFicheroViajeFacturaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreFicheroViajeOtrosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreFicheroViajePagoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NombreProveedorField;
@@ -454,6 +536,45 @@ namespace Aeseg.ProxyJustificacion {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] FicheroViajeFactura {
+            get {
+                return this.FicheroViajeFacturaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FicheroViajeFacturaField, value) != true)) {
+                    this.FicheroViajeFacturaField = value;
+                    this.RaisePropertyChanged("FicheroViajeFactura");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] FicheroViajeOtros {
+            get {
+                return this.FicheroViajeOtrosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FicheroViajeOtrosField, value) != true)) {
+                    this.FicheroViajeOtrosField = value;
+                    this.RaisePropertyChanged("FicheroViajeOtros");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] FicheroViajePago {
+            get {
+                return this.FicheroViajePagoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FicheroViajePagoField, value) != true)) {
+                    this.FicheroViajePagoField = value;
+                    this.RaisePropertyChanged("FicheroViajePago");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string IdPais {
             get {
                 return this.IdPaisField;
@@ -532,6 +653,45 @@ namespace Aeseg.ProxyJustificacion {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NombreFicheroViajeFactura {
+            get {
+                return this.NombreFicheroViajeFacturaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreFicheroViajeFacturaField, value) != true)) {
+                    this.NombreFicheroViajeFacturaField = value;
+                    this.RaisePropertyChanged("NombreFicheroViajeFactura");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NombreFicheroViajeOtros {
+            get {
+                return this.NombreFicheroViajeOtrosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreFicheroViajeOtrosField, value) != true)) {
+                    this.NombreFicheroViajeOtrosField = value;
+                    this.RaisePropertyChanged("NombreFicheroViajeOtros");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NombreFicheroViajePago {
+            get {
+                return this.NombreFicheroViajePagoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreFicheroViajePagoField, value) != true)) {
+                    this.NombreFicheroViajePagoField = value;
+                    this.RaisePropertyChanged("NombreFicheroViajePago");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string NombreProveedor {
             get {
                 return this.NombreProveedorField;
@@ -587,7 +747,25 @@ namespace Aeseg.ProxyJustificacion {
         private System.DateTime FechaFacturaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] FicheroBSFacturaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] FicheroBSOtrosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] FicheroBSPagoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NIFField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreFicheroBSFacturaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreFicheroBSOtrosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreFicheroBSPagoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NombreProveedorField;
@@ -638,6 +816,45 @@ namespace Aeseg.ProxyJustificacion {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] FicheroBSFactura {
+            get {
+                return this.FicheroBSFacturaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FicheroBSFacturaField, value) != true)) {
+                    this.FicheroBSFacturaField = value;
+                    this.RaisePropertyChanged("FicheroBSFactura");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] FicheroBSOtros {
+            get {
+                return this.FicheroBSOtrosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FicheroBSOtrosField, value) != true)) {
+                    this.FicheroBSOtrosField = value;
+                    this.RaisePropertyChanged("FicheroBSOtros");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] FicheroBSPago {
+            get {
+                return this.FicheroBSPagoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FicheroBSPagoField, value) != true)) {
+                    this.FicheroBSPagoField = value;
+                    this.RaisePropertyChanged("FicheroBSPago");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string NIF {
             get {
                 return this.NIFField;
@@ -646,6 +863,45 @@ namespace Aeseg.ProxyJustificacion {
                 if ((object.ReferenceEquals(this.NIFField, value) != true)) {
                     this.NIFField = value;
                     this.RaisePropertyChanged("NIF");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NombreFicheroBSFactura {
+            get {
+                return this.NombreFicheroBSFacturaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreFicheroBSFacturaField, value) != true)) {
+                    this.NombreFicheroBSFacturaField = value;
+                    this.RaisePropertyChanged("NombreFicheroBSFactura");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NombreFicheroBSOtros {
+            get {
+                return this.NombreFicheroBSOtrosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreFicheroBSOtrosField, value) != true)) {
+                    this.NombreFicheroBSOtrosField = value;
+                    this.RaisePropertyChanged("NombreFicheroBSOtros");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NombreFicheroBSPago {
+            get {
+                return this.NombreFicheroBSPagoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreFicheroBSPagoField, value) != true)) {
+                    this.NombreFicheroBSPagoField = value;
+                    this.RaisePropertyChanged("NombreFicheroBSPago");
                 }
             }
         }
@@ -924,6 +1180,18 @@ namespace Aeseg.ProxyJustificacion {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://aeseg.isciii.es/IJustification/LoadJviajes", ReplyAction="http://aeseg.isciii.es/IJustification/LoadJviajesResponse")]
         System.Threading.Tasks.Task<Aeseg.ProxyJustificacion.LoadResult> LoadJviajesAsync(Aeseg.ProxyJustificacion.JviajeInterchageModel jviaje);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://aeseg.isciii.es/IJustification/GetVersion", ReplyAction="http://aeseg.isciii.es/IJustification/GetVersionResponse")]
+        string GetVersion();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://aeseg.isciii.es/IJustification/GetVersion", ReplyAction="http://aeseg.isciii.es/IJustification/GetVersionResponse")]
+        System.Threading.Tasks.Task<string> GetVersionAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://aeseg.isciii.es/IJustification/Test", ReplyAction="http://aeseg.isciii.es/IJustification/TestResponse")]
+        string Test();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://aeseg.isciii.es/IJustification/Test", ReplyAction="http://aeseg.isciii.es/IJustification/TestResponse")]
+        System.Threading.Tasks.Task<string> TestAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -975,6 +1243,22 @@ namespace Aeseg.ProxyJustificacion {
         
         public System.Threading.Tasks.Task<Aeseg.ProxyJustificacion.LoadResult> LoadJviajesAsync(Aeseg.ProxyJustificacion.JviajeInterchageModel jviaje) {
             return base.Channel.LoadJviajesAsync(jviaje);
+        }
+        
+        public string GetVersion() {
+            return base.Channel.GetVersion();
+        }
+        
+        public System.Threading.Tasks.Task<string> GetVersionAsync() {
+            return base.Channel.GetVersionAsync();
+        }
+        
+        public string Test() {
+            return base.Channel.Test();
+        }
+        
+        public System.Threading.Tasks.Task<string> TestAsync() {
+            return base.Channel.TestAsync();
         }
     }
 }

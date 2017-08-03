@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
-  <contractRef ref="http://aesegdes.isciiides.es/Services/Justificantes.svc?wsdl" docRef="http://aesegdes.isciiides.es/Services/Justificantes.svc" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <contractRef ref="http://aeseg.pre.isciii.es/Services/Justificantes.svc?wsdl" docRef="http://aeseg.pre.isciii.es/Services/Justificantes.svc" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
 </discovery>

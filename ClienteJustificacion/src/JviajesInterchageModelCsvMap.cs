@@ -12,21 +12,23 @@ namespace ClienteJustificacion
     {
         public JviajesInterchageModelCsvMap()
         {
-            //ID_EXPEDIENTE;ID_PARTIDA;ID_CONCEPTO;ID_TIPO_JUSTIFICANTE;IMPORTE_TOTAL;IMPORTE_IMPUTADO;FECHA_PAGO;ANUALIDAD;OBSERVACIONES;DOC;
+            //Campos del csv "VIAJES_.csv"
+            //ID_EXPEDIENTE;ID_PARTIDA;ID_CONCEPTO;IMPORTE_TOTAL;IMPORTE_IMPUTADO;FECHA_PAGO;ID_TIPO_JUSTIFICANTE;ANUALIDAD;OBSERVACIONES;DOC_FACTURA;DOC_PAGO;DOC_OTROS;
             //NUMERO_FACTURA;NIF;NOMBRE;CONCEPTO;FECHA_JUST;BASE_IMP;TIPO_IMP;
             //CENTRO_DESTINO;FECHA_INICIO_VIAJE; FECHA_INICIO_CONGRESO;FECHA_FIN_VIAJE;FECHA_FIN_CONGRESO;ID_PAIS;ID_TIPO_GASTO_VIAJE;ID_TIPO_VIAJE;ITINERARIO;NIF_VIAJERO
 
             Map(m => m.Expediente).Name("ID_EXPEDIENTE");
             Map(m => m.IdPartida).Name("ID_PARTIDA");
             Map(m => m.idConcepto).Name("ID_CONCEPTO");
-            Map(m => m.idTipoJustificante).Name("TIPO_JUSTIFICANTE");
             Map(m => m.ImporteTotal).Name("IMPORTE_TOTAL");
             Map(m => m.ImporteImputado).Name("IMPORTE_IMPUTADO");
             Map(m => m.FechaPago).Name("FECHA_PAGO");
+            Map(m => m.idTipoJustificante).Name("ID_TIPO_JUSTIFICANTE");
             Map(m => m.Anualidad).Name("ANUALIDAD");
             Map(m => m.Observaciones).Name("OBSERVACIONES");
-            Map(m => m.NombreFichero).Name("DOC").TypeConverter<FileTypeConverter>();
-
+            Map(m => m.NombreFicheroViajeFactura).Name("DOC_FACTURA").TypeConverter<FileTypeConverter>();
+            Map(m => m.NombreFicheroViajePago).Name("DOC_PAGO").TypeConverter<FileTypeConverter>();
+            Map(m => m.NombreFicheroViajeOtros).Name("DOC_OTROS").TypeConverter<FileTypeConverter>();
             Map(m => m.NumeroFactura).Name("NUMERO_FACTURA");
             Map(m => m.NifProveedor).Name("NIF");
             Map(m => m.NombreProveedor).Name("NOMBRE");
@@ -34,7 +36,6 @@ namespace ClienteJustificacion
             Map(m => m.FechaFactura).Name("FECHA_JUST");
             Map(m => m.BaseImponible).Name("BASE_IMP");
             Map(m => m.TipoImpositivo).Name("TIPO_IMP");
-
             Map(m => m.CentroDestino).Name("CENTRO_DESTINO");
             Map(m => m.FechaInicioViaje).Name("FECHA_INICIO_VIAJE");
             Map(m => m.FechaInicioCongreso).Name("FECHA_INICIO_CONGRESO");

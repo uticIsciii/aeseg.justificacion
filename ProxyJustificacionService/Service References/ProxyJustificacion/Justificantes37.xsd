@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://aeseg.isciii.es" elementFormDefault="qualified" targetNamespace="http://aeseg.isciii.es" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://aesegdes.isciiides.es/Services/Justificantes.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ISCIII.AESEG.JustificationService" />
+  <xs:import schemaLocation="http://aeseg.pre.isciii.es/Services/Justificantes.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ISCIII.AESEG.JustificationService" />
   <xs:element name="LoadJbs">
     <xs:complexType>
       <xs:sequence>
@@ -40,6 +40,30 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ISCIII.AESEG.JustificationService" minOccurs="0" name="LoadJviajesResult" nillable="true" type="q6:LoadResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVersion">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVersionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetVersionResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Test">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TestResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
