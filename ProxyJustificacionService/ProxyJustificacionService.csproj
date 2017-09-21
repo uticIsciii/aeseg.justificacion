@@ -70,15 +70,17 @@
     <None Include="Service References\ProxyJustificacion\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ProxyJustificacion\JService12.wsdl" />
-    <None Include="Service References\ProxyJustificacion\Justificantes12.wsdl" />
-    <None Include="Service References\ProxyJustificacion\Justificantes36.xsd">
+    <None Include="Service References\ProxyJustificacion\JService.wsdl" />
+    <None Include="Service References\ProxyJustificacion\Justificantes.wsdl">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ProxyJustificacion\Justificantes37.xsd">
+    <None Include="Service References\ProxyJustificacion\Justificantes.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ProxyJustificacion\Justificantes38.xsd">
+    <None Include="Service References\ProxyJustificacion\Justificantes1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProxyJustificacion\Justificantes2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ProxyJustificacion\Reference.svcmap">
@@ -87,7 +89,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ProxyJustificacion\Justificantes12.disco" />
+    <None Include="Service References\ProxyJustificacion\Justificantes.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

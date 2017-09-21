@@ -22,12 +22,12 @@
     <MetadataSource Address="http://aeseg.pre.isciii.es/Services/Justificantes.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Justificantes12.disco" MetadataType="Disco" ID="d8429d75-ed6b-46ab-a03a-c92a73c8a26e" SourceId="1" SourceUrl="http://aeseg.pre.isciii.es/Services/Justificantes.svc?disco" />
-    <MetadataFile FileName="Justificantes36.xsd" MetadataType="Schema" ID="81fa2372-1bc4-44a7-b49f-3f4b8198a069" SourceId="1" SourceUrl="http://aeseg.pre.isciii.es/Services/Justificantes.svc?xsd=xsd1" />
-    <MetadataFile FileName="Justificantes37.xsd" MetadataType="Schema" ID="2d4fdc84-6933-4e6b-8fd4-178e0d165432" SourceId="1" SourceUrl="http://aeseg.pre.isciii.es/Services/Justificantes.svc?xsd=xsd0" />
-    <MetadataFile FileName="Justificantes38.xsd" MetadataType="Schema" ID="5e7a09a5-54f6-47d0-b51c-76b3641a5e19" SourceId="1" SourceUrl="http://aeseg.pre.isciii.es/Services/Justificantes.svc?xsd=xsd2" />
-    <MetadataFile FileName="Justificantes12.wsdl" MetadataType="Wsdl" ID="a67422ef-0afc-4d85-8600-5e76106fd32c" SourceId="1" SourceUrl="http://aeseg.pre.isciii.es/Services/Justificantes.svc?wsdl=wsdl0" />
-    <MetadataFile FileName="JService12.wsdl" MetadataType="Wsdl" ID="25527c2d-03aa-4032-ab62-35f7efd56185" SourceId="1" SourceUrl="http://aeseg.pre.isciii.es/Services/Justificantes.svc?wsdl" />
+    <MetadataFile FileName="Justificantes.disco" MetadataType="Disco" ID="30a8ff02-d97f-4024-9375-01e9281b556b" SourceId="1" SourceUrl="http://aeseg.pre.isciii.es/Services/Justificantes.svc?disco" />
+    <MetadataFile FileName="Justificantes.xsd" MetadataType="Schema" ID="aac5bb08-41a8-4a12-83f4-17597f7b6e94" SourceId="1" SourceUrl="http://aeseg.pre.isciii.es/Services/Justificantes.svc?xsd=xsd1" />
+    <MetadataFile FileName="Justificantes1.xsd" MetadataType="Schema" ID="21943c30-6970-4dbf-999f-dda03daf8cea" SourceId="1" SourceUrl="http://aeseg.pre.isciii.es/Services/Justificantes.svc?xsd=xsd0" />
+    <MetadataFile FileName="Justificantes2.xsd" MetadataType="Schema" ID="6cca726f-432b-42c5-b48a-40b402645788" SourceId="1" SourceUrl="http://aeseg.pre.isciii.es/Services/Justificantes.svc?xsd=xsd2" />
+    <MetadataFile FileName="Justificantes.wsdl" MetadataType="Wsdl" ID="025cdd67-d3b7-44cd-a9dd-ad6cba03e0dc" SourceId="1" SourceUrl="http://aeseg.pre.isciii.es/Services/Justificantes.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="JService.wsdl" MetadataType="Wsdl" ID="2fd337b1-c299-49a7-93a9-171f4ba0dff1" SourceId="1" SourceUrl="http://aeseg.pre.isciii.es/Services/Justificantes.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

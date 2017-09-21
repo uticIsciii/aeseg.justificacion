@@ -87,7 +87,7 @@ namespace ClienteJustificacion
         #endregion
 
         #region MÉTODO DE OBTENCIÓN DE DATOS DE JUSTIFICANTES
-        
+
         /// <summary>
         /// Procesa el fichero CSV de entrada
         /// </summary>
@@ -97,7 +97,7 @@ namespace ClienteJustificacion
         static List<T> LoadCsv<T, U>(string path) where T : JInterchageModel where U : CsvClassMap
         {
             #region OBTENCIÓN DE DATOS DEL CSV (BIENES Y SERVICIOS, PERSONAL, O VIAJE)
-          
+
             //Carga y parseo del fichero de datos jbs
             var parseErrors = new List<ParseResult>(); //Listado de errores de parseo
             var csv = new CsvReader(new StreamReader(path));
@@ -124,10 +124,10 @@ namespace ClienteJustificacion
                 throw new ArgumentException("Formato del fichero de entrada no valido.");
             }
             return records;
-            
+
             #endregion
         }
-            
+
         #endregion
 
         #region MÉTODO DE ENVIO DE DATOS DE JUSTIFICANTES
@@ -145,7 +145,7 @@ namespace ClienteJustificacion
 
             using (JustificationClient client = new JustificationClient())
             {
-               
+
 
 
                 client.ClientCredentials.UserName.UserName = user;
@@ -154,22 +154,28 @@ namespace ClienteJustificacion
                 foreach (var item in records.Select((value, i) => new { i, value }))
                 {
                     Console.Write("Envio: {0}, {1}.", item.i, item.value.Expediente);
-    
+
                     LoadResult r;
                     if (item.value is JbsInterchageModel)
                     {
                         #region Llamada al Servicio Web de Justificación Bienes y Servicios
                         var j = (JbsInterchageModel)item.value;
                         //Carga de documentos múltiples en modelo Justificante de Bienes y Servicios
-                        j.FicheroBSFactura = File.ReadAllBytes(j.NombreFicheroBSFactura); //obtenemos los byte[] del fichero a través de la ruta que venga en el csv
-                        j.NombreFicheroBSFactura = Path.GetFileName(j.NombreFicheroBSFactura); //obtenemos el nombre del fichero a través de la ruta que venga en el csv
-
-                        j.FicheroBSPago = File.ReadAllBytes(j.NombreFicheroBSPago); //obtenemos los byte[] del fichero a través de la ruta que venga en el csv
-                        j.NombreFicheroBSPago = Path.GetFileName(j.NombreFicheroBSPago); //obtenemos el nombre del fichero a través de la ruta que venga en el csv
-
-                        j.FicheroBSOtros = File.ReadAllBytes(j.NombreFicheroBSOtros); //obtenemos los byte[] del fichero a través de la ruta que venga en el csv
-                        j.NombreFicheroBSOtros = Path.GetFileName(j.NombreFicheroBSOtros); //obtenemos el nombre del fichero a través de la ruta que venga en el csv
-
+                        if (!string.IsNullOrEmpty(j.NombreFicheroBSFactura) )
+                        {
+                            j.FicheroBSFactura = File.ReadAllBytes(j.NombreFicheroBSFactura); //obtenemos los byte[] del fichero a través de la ruta que venga en el csv
+                            j.NombreFicheroBSFactura = Path.GetFileName(j.NombreFicheroBSFactura); //obtenemos el nombre del fichero a través de la ruta que venga en el csv
+                        }
+                        if (!string.IsNullOrEmpty(j.NombreFicheroBSPago))
+                        {
+                            j.FicheroBSPago = File.ReadAllBytes(j.NombreFicheroBSPago); //obtenemos los byte[] del fichero a través de la ruta que venga en el csv
+                            j.NombreFicheroBSPago = Path.GetFileName(j.NombreFicheroBSPago); //obtenemos el nombre del fichero a través de la ruta que venga en el csv
+                        }
+                        if (!string.IsNullOrEmpty(j.NombreFicheroBSOtros))
+                        {
+                            j.FicheroBSOtros = File.ReadAllBytes(j.NombreFicheroBSOtros); //obtenemos los byte[] del fichero a través de la ruta que venga en el csv
+                            j.NombreFicheroBSOtros = Path.GetFileName(j.NombreFicheroBSOtros); //obtenemos el nombre del fichero a través de la ruta que venga en el csv
+                        }
                         r = client.LoadJbs(j); //Llamada al método LoadJbs del servicio web justificación 
 
                         resultadosEnvio.Add(r);
@@ -232,7 +238,7 @@ namespace ClienteJustificacion
             }
 
             return resultadosEnvio;
-            
+
             #endregion
         }
 

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ISCIII.AESEG.JustificationService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ISCIII.AESEG.JustificationService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="JbsInterchageModel">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:JInterchageModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BaseImponible" type="xs:decimal" />
+          <xs:element minOccurs="0" name="DescripcionConcepto" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FechaFactura" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FicheroBSFactura" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="FicheroBSOtros" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="FicheroBSPago" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="NIF" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroBSFactura" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroBSOtros" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroBSPago" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreProveedor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NumeroFactura" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TipoImpositivo" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="JbsInterchageModel" nillable="true" type="tns:JbsInterchageModel" />
+  <xs:complexType name="JInterchageModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Anualidad" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Expediente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaPago" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IdPartida" type="xs:int" />
+      <xs:element minOccurs="0" name="ImporteImputado" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ImporteTotal" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Observaciones" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idConcepto" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="idTipoJustificante" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="JInterchageModel" nillable="true" type="tns:JInterchageModel" />
+  <xs:complexType name="LoadResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Anualidad" type="xs:int" />
+      <xs:element minOccurs="0" name="DescripcionResultado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Errores" nillable="true" type="tns:ArrayOfJError" />
+      <xs:element minOccurs="0" name="Expediente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdJustificante" type="xs:int" />
+      <xs:element minOccurs="0" name="IdPartida" type="xs:int" />
+      <xs:element minOccurs="0" name="ResultadoCarga" type="tns:ResultadoCarga" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoadResult" nillable="true" type="tns:LoadResult" />
+  <xs:complexType name="ArrayOfJError">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="JError" nillable="true" type="tns:JError" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJError" nillable="true" type="tns:ArrayOfJError" />
+  <xs:complexType name="JError">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="JError" nillable="true" type="tns:JError" />
+  <xs:simpleType name="ResultadoCarga">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Correcto" />
+      <xs:enumeration value="Erroneo" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ResultadoCarga" nillable="true" type="tns:ResultadoCarga" />
+  <xs:complexType name="JpersonalInterchageModel">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:JInterchageModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FechaDesde" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FechaHasta" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FicheroPerNomina" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="FicheroPerOtros" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="FicheroPerPago" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="IdCategoriaLaboral" type="xs:int" />
+          <xs:element minOccurs="0" name="Nif" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroPerNomina" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroPerOtros" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroPerPago" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="JpersonalInterchageModel" nillable="true" type="tns:JpersonalInterchageModel" />
+  <xs:complexType name="JviajeInterchageModel">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:JInterchageModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BaseImponible" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="CentroDestino" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ConceptoFactura" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FechaFactura" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FechaFinCongreso" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FechaFinViaje" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FechaInicioCongreso" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FechaInicioViaje" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FicheroViajeFactura" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="FicheroViajeOtros" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="FicheroViajePago" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="IdPais" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IdTipoGastoViaje" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="IdTipoViaje" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Itinerario" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Nif" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NifProveedor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroViajeFactura" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroViajeOtros" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreFicheroViajePago" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreProveedor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NumeroFactura" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TipoImpositivo" nillable="true" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="JviajeInterchageModel" nillable="true" type="tns:JviajeInterchageModel" />
+</xs:schema>
