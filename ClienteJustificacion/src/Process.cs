@@ -1,90 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NLog;
-using CsvHelper;
-using PowerArgs;
-using System.IO;
-using Aeseg.ProxyJustificacion;
+﻿using CsvHelper;
 using CsvHelper.Configuration;
+using ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion;
+using NLog;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.ServiceModel.Security;
 
-namespace ClienteJustificacion
+namespace ISCIII.AESEG.ClienteJustificacion.BLL
 {
-    class Program
+    public class Process
     {
         #region PROPIEDADES
 
-        private static Random random = new Random();
-        private static Logger _loger = LogManager.GetCurrentClassLogger();
-        private static string user;
-        private static string password;
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
-        #endregion
+        #endregion PROPIEDADES
 
-        #region EJECUCIÓN DEL PROCESO INICIAL
 
-        static void Main(string[] args)
-        {
-            try
-            {
-                var clientArgs = Args.Parse<ClientArgs>(args);
-                Console.WriteLine("Proceso del fichero: {0}; {1}; {2}; {3};", clientArgs.User, "*****", clientArgs.FileType, clientArgs.File);
-                _loger.Info("Proceso del fichero: {0}; {1}; {2}; {3};", clientArgs.User, "*****", clientArgs.FileType, clientArgs.File);
-                user = clientArgs.User;
-                password = clientArgs.Password;
-
-                switch (clientArgs.FileType)
-                {
-                    case JustificacionFileType.Bienes:
-                        ProcessJbs(clientArgs);
-                        break;
-                    case JustificacionFileType.Viajes:
-                        ProcessJviajes(clientArgs);
-                        break;
-                    case JustificacionFileType.Personal:
-                        ProcessJpersonal(clientArgs);
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-            }
-            catch (ArgException ex)
-            {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ArgUsage.GenerateUsageFromTemplate<ClientArgs>());
-            }
-            catch (Exception e)
-            {
-                _loger.Error(e, "error!");
-                Console.WriteLine("Error." + e.Message);
-            }
-        }
-
-        #endregion
 
         #region MÉTODOS PRINCIPALES DE PROCESOS DE OBTENCIÓN Y ENVIO DE DATOS DE JUSTIFICANTES (BIENES Y SERVICIOS, PERSONAL Y VIAJE) AL SERVICIO WEB JUSTIFICACIÓN
 
-        static void ProcessJbs(ClientArgs clientArgs)
+        public static void ProcessJbs(ClientArgs clientArgs)
         {
-            var records = LoadCsv<JbsInterchageModel, JbsInterchageModelCsvDocMap>(clientArgs.File);
-            var result = SendRecords(records.Cast<JInterchageModel>().ToList());
+            var records = CargarCsv<JbsInterchageModel, JbsInterchageModelCsvDocMap>(clientArgs.File);
+            _logger.Info("Cargado fichero {0}", clientArgs.File);
+            var result = SendRecords(records.Cast<JInterchageModel>().ToList(), clientArgs.User, clientArgs.Password);
         }
 
-        static void ProcessJpersonal(ClientArgs clientArgs)
+        public static void ProcessJpersonal(ClientArgs clientArgs)
         {
-            var records = LoadCsv<JpersonalInterchageModel, JpersonalInterchageModelCsvMap>(clientArgs.File);
-            var result = SendRecords(records.Cast<JInterchageModel>().ToList());
+            var records = CargarCsv<JpersonalInterchageModel, JpersonalInterchageModelCsvMap>(clientArgs.File);
+            _logger.Info("Cargado fichero {0}", clientArgs.File);
+            var result = SendRecords(records.Cast<JInterchageModel>().ToList(), clientArgs.User, clientArgs.Password);
         }
 
-        static void ProcessJviajes(ClientArgs clientArgs)
+        public static void ProcessJviajes(ClientArgs clientArgs)
         {
-            var records = LoadCsv<JviajeInterchageModel, JviajesInterchageModelCsvMap>(clientArgs.File);
-            var result = SendRecords(records.Cast<JInterchageModel>().ToList());
+            var records = CargarCsv<JviajeInterchageModel, JviajesInterchageModelCsvMap>(clientArgs.File);
+            _logger.Info("Cargado fichero {0}", clientArgs.File);
+            var result = SendRecords(records.Cast<JInterchageModel>().ToList(), clientArgs.User, clientArgs.Password);
         }
 
-        #endregion
+        #endregion MÉTODOS PRINCIPALES DE PROCESOS DE OBTENCIÓN Y ENVIO DE DATOS DE JUSTIFICANTES (BIENES Y SERVICIOS, PERSONAL Y VIAJE) AL SERVICIO WEB JUSTIFICACIÓN
 
         #region MÉTODO DE OBTENCIÓN DE DATOS DE JUSTIFICANTES
 
@@ -94,7 +53,7 @@ namespace ClienteJustificacion
         /// <typeparam name="T"></typeparam>
         /// <param name="path"></param>
         /// <returns></returns>
-        static List<T> LoadCsv<T, U>(string path) where T : JInterchageModel where U : CsvClassMap
+        private static List<T> CargarCsv<T, U>(string path) where T : JInterchageModel where U : CsvClassMap
         {
             #region OBTENCIÓN DE DATOS DEL CSV (BIENES Y SERVICIOS, PERSONAL, O VIAJE)
 
@@ -112,23 +71,21 @@ namespace ClienteJustificacion
             };
             var records = csv.GetRecords<T>().ToList();
 
-            if (parseErrors.Count > 0)
+            if (parseErrors.Any())
             {
-                Console.WriteLine("Se ha encontrado errores en el fichero de entrada, corrijalos antes de continuar.");
-                _loger.Error("Se ha encontrado errores en el fichero de entrada, corrijalos antes de continuar.");
+                _logger.Warn("Se ha encontrado errores en el fichero de entrada, corrijalos antes de continuar.");
                 foreach (var error in parseErrors)
                 {
-                    Console.WriteLine("Linea: {0}; Error {1};", error.Id, error.Descripcion);
-                    _loger.Error("Linea: {0}; Error {1};", error.Id, error.Descripcion);
+                    _logger.Warn("Linea: {0}; Error {1};", error.Id, error.Descripcion);
                 }
                 throw new ArgumentException("Formato del fichero de entrada no valido.");
             }
             return records;
 
-            #endregion
+            #endregion OBTENCIÓN DE DATOS DEL CSV (BIENES Y SERVICIOS, PERSONAL, O VIAJE)
         }
 
-        #endregion
+        #endregion MÉTODO DE OBTENCIÓN DE DATOS DE JUSTIFICANTES
 
         #region MÉTODO DE ENVIO DE DATOS DE JUSTIFICANTES
 
@@ -137,31 +94,32 @@ namespace ClienteJustificacion
         /// </summary>
         /// <param name="records">Listado que contiene los valores de modelo de datos de Justificación del Servicio Web</param>
         /// <returns></returns>
-        static List<LoadResult> SendRecords(List<JInterchageModel> records)
+        private static List<LoadResult> SendRecords(List<JInterchageModel> records, string usuario, string password)
         {
             #region ENVÍO DE DATOS A MÉTODOS DEL SERVICIO WEB JUSTIFICACIÓN
 
             var resultadosEnvio = new List<LoadResult>();
 
-            using (JustificationClient client = new JustificationClient())
+            var client = new JustificationClient();
+
+            try
             {
-
-
-
-                client.ClientCredentials.UserName.UserName = user;
+                client.ClientCredentials.UserName.UserName = usuario;
                 client.ClientCredentials.UserName.Password = password;
+                client.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.None;
+
+                int total = records.Count();
 
                 foreach (var item in records.Select((value, i) => new { i, value }))
                 {
-                    Console.Write("Envio: {0}, {1}.", item.i, item.value.Expediente);
-
                     LoadResult r;
                     if (item.value is JbsInterchageModel)
                     {
                         #region Llamada al Servicio Web de Justificación Bienes y Servicios
+
                         var j = (JbsInterchageModel)item.value;
                         //Carga de documentos múltiples en modelo Justificante de Bienes y Servicios
-                        if (!string.IsNullOrEmpty(j.NombreFicheroBSFactura) )
+                        if (!string.IsNullOrEmpty(j.NombreFicheroBSFactura))
                         {
                             j.FicheroBSFactura = File.ReadAllBytes(j.NombreFicheroBSFactura); //obtenemos los byte[] del fichero a través de la ruta que venga en el csv
                             j.NombreFicheroBSFactura = Path.GetFileName(j.NombreFicheroBSFactura); //obtenemos el nombre del fichero a través de la ruta que venga en el csv
@@ -176,14 +134,18 @@ namespace ClienteJustificacion
                             j.FicheroBSOtros = File.ReadAllBytes(j.NombreFicheroBSOtros); //obtenemos los byte[] del fichero a través de la ruta que venga en el csv
                             j.NombreFicheroBSOtros = Path.GetFileName(j.NombreFicheroBSOtros); //obtenemos el nombre del fichero a través de la ruta que venga en el csv
                         }
-                        r = client.LoadJbs(j); //Llamada al método LoadJbs del servicio web justificación 
+                        _logger.Info("Cargando justificante {0} de {1}, Expediente {2}.", item.i + 1, total, item.value.Expediente);
+
+                        r = client.LoadJbs(j); //Llamada al método LoadJbs del servicio web justificación
 
                         resultadosEnvio.Add(r);
-                        #endregion
+
+                        #endregion Llamada al Servicio Web de Justificación Bienes y Servicios
                     }
                     else if (item.value is JpersonalInterchageModel)
                     {
                         #region Llamada al Servicio Web de Justificación Personal
+
                         var j = (JpersonalInterchageModel)item.value;
                         //Carga de documentos múltiples en modelo Justificante de Personal
                         j.FicheroPerNomina = File.ReadAllBytes(j.NombreFicheroPerNomina);
@@ -195,10 +157,11 @@ namespace ClienteJustificacion
                         j.FicheroPerOtros = File.ReadAllBytes(j.NombreFicheroPerOtros);
                         j.NombreFicheroPerOtros = Path.GetFileName(j.NombreFicheroPerOtros);
 
-                        r = client.LoadJpersonal(j); //Llamada al método LoadJpersonal del servicio web justificación 
+                        r = client.LoadJpersonal(j); //Llamada al método LoadJpersonal del servicio web justificación
 
                         resultadosEnvio.Add(r);
-                        #endregion
+
+                        #endregion Llamada al Servicio Web de Justificación Personal
                     }
                     else if (item.value is JviajeInterchageModel)
                     {
@@ -214,35 +177,44 @@ namespace ClienteJustificacion
                         j.FicheroViajeOtros = File.ReadAllBytes(j.NombreFicheroViajeOtros);
                         j.NombreFicheroViajeOtros = Path.GetFileName(j.NombreFicheroViajeOtros);
 
-                        r = client.LoadJviajes(j); //Llamada al método LoadJviajes del servicio web justificación 
+                        r = client.LoadJviajes(j); //Llamada al método LoadJviajes del servicio web justificación
 
                         resultadosEnvio.Add(r);
-                        #endregion
+
+                        #endregion Llamada al Servicio Web de Justificación Viaje
                     }
                     else
                     {
                         throw new ArgumentException("Tipo de datos incorrecto.");
+                        //_logger.Warn("Error: Tipo de datos incorrecto");
                     }
-                    Console.WriteLine(" Resultado: {0};", r.ResultadoCarga);
-                    _loger.Info("Envio: {0}, {1}. Resultado {2}", item.i, item.value.Expediente, r.ResultadoCarga);
+
+                    _logger.Info("Carga de justificante {0} de {1}, Expediente: {2}. Resultado {3} - {4}", item.i + 1, total, item.value.Expediente, r.ResultadoCarga, r.DescripcionResultado);
                     if (r.ResultadoCarga == ResultadoCarga.Erroneo)
                     {
                         foreach (var error in r.Errores)
                         {
-                            _loger.Warn("Envio: {0}, {1}. Error {2} - {3}", item.i, item.value.Expediente, error.Nombre, error.Descripcion);
-                            Console.WriteLine("Envio: {0}, {1}. Error {2} - {3}", item.i, item.value.Expediente, error.Nombre, error.Descripcion);
-
+                            _logger.Warn("Carga de justificante {0} de {1}, Expediente: {2}. Error: {3} - {4}", item.i + 1, total, item.value.Expediente, error.Nombre, error.Descripcion);
                         }
                     }
+                    //}
+                    _logger.Info("Terminado.");
                 }
+
+                return resultadosEnvio;
+            }
+            // Esta excepción se puede generar en distintos escenarios, por ej: si el usuario/contraseña no son correctos 
+            // o si el tipo de autenticación del cliente y del servidor no coinciden
+            catch (MessageSecurityException ex)
+            {
+                _logger.Warn("Ocurrió un error al autenticar al usuario");
+                _logger.Warn(ex.InnerException.Message);
+                throw;
             }
 
-            return resultadosEnvio;
-
-            #endregion
+            #endregion ENVÍO DE DATOS A MÉTODOS DEL SERVICIO WEB JUSTIFICACIÓN
         }
 
-        #endregion
+        #endregion MÉTODO DE ENVIO DE DATOS DE JUSTIFICANTES
     }
-
 }

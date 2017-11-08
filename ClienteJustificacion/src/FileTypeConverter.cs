@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CsvHelper.TypeConversion;
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CsvHelper.TypeConversion;
 
-namespace ClienteJustificacion
+namespace ISCIII.AESEG.ClienteJustificacion.BLL
 {
     /// <summary>
     /// Conversor para rutas de documentos. Valida la existencia del fichero.

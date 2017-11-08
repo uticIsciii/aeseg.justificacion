@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PowerArgs;
+﻿using PowerArgs;
 
-namespace ClienteJustificacion
+namespace ISCIII.AESEG.ClienteJustificacion.BLL
 {
     public class ClientArgs
-    {        // This argument is required and if not specified the user will 
-        // be prompted.
+    {
         [ArgRequired()]
         [ArgShortcut("u")]
         [ArgDescription("Nombre de usuario.")]

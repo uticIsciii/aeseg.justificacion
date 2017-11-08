@@ -5,10 +5,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E75DF391-CD85-4520-8212-9C32F2CDDEF8}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClienteJustificacion</RootNamespace>
-    <AssemblyName>ClienteJustificacion</AssemblyName>
+    <RootNamespace>ISCIII.AESEG.ClienteJustificacion.BLL</RootNamespace>
+    <AssemblyName>ISCIII.AESEG.ClienteJustificacion.BLL</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -27,6 +27,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,21 +48,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.2.16.3.0\lib\net45\CsvHelper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.4.1\lib\net45\NLog.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="PowerArgs, Version=2.8.0.0, Culture=neutral, PublicKeyToken=26a276264bbd55b8, processorArchitecture=MSIL">
-      <HintPath>..\packages\PowerArgs.2.8.0.0\lib\net45\PowerArgs.dll</HintPath>
+    <Reference Include="PowerArgs, Version=2.8.1.0, Culture=neutral, PublicKeyToken=26a276264bbd55b8, processorArchitecture=MSIL">
+      <HintPath>..\packages\PowerArgs.2.8.1.0\lib\net45\PowerArgs.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
@@ -78,13 +82,10 @@
     <Compile Include="src\JpersonalInterchageModelCsvMap.cs" />
     <Compile Include="src\JviajesInterchageModelCsvMap.cs" />
     <Compile Include="src\ParseResult.cs" />
-    <Compile Include="src\Program.cs" />
+    <Compile Include="src\Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="csv\BIENES_SERV_.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -94,12 +95,14 @@
     <None Include="csv\VIAJES_.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProxyJustificacionService\ProxyJustificacionService.csproj">
+    <ProjectReference Include="..\ProxyJustificacionService\ISCIII.AESEG.ClienteJustificacion.Proxy.csproj">
       <Project>{d9db9bf8-75e9-48ff-afdf-844f595b881a}</Project>
-      <Name>ProxyJustificacionService</Name>
+      <Name>ISCIII.AESEG.ClienteJustificacion.Proxy</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Aeseg.ProxyJustificacion {
+namespace ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion {
     using System.Runtime.Serialization;
     using System;
     
@@ -17,9 +17,9 @@ namespace Aeseg.ProxyJustificacion {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="JInterchageModel", Namespace="http://schemas.datacontract.org/2004/07/ISCIII.AESEG.JustificationService")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Aeseg.ProxyJustificacion.JpersonalInterchageModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Aeseg.ProxyJustificacion.JviajeInterchageModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Aeseg.ProxyJustificacion.JbsInterchageModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JpersonalInterchageModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JviajeInterchageModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JbsInterchageModel))]
     public partial class JInterchageModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -193,7 +193,7 @@ namespace Aeseg.ProxyJustificacion {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="JpersonalInterchageModel", Namespace="http://schemas.datacontract.org/2004/07/ISCIII.AESEG.JustificationService")]
     [System.SerializableAttribute()]
-    public partial class JpersonalInterchageModel : Aeseg.ProxyJustificacion.JInterchageModel {
+    public partial class JpersonalInterchageModel : ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JInterchageModel {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime FechaDesdeField;
@@ -360,7 +360,7 @@ namespace Aeseg.ProxyJustificacion {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="JviajeInterchageModel", Namespace="http://schemas.datacontract.org/2004/07/ISCIII.AESEG.JustificationService")]
     [System.SerializableAttribute()]
-    public partial class JviajeInterchageModel : Aeseg.ProxyJustificacion.JInterchageModel {
+    public partial class JviajeInterchageModel : ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JInterchageModel {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<decimal> BaseImponibleField;
@@ -735,7 +735,7 @@ namespace Aeseg.ProxyJustificacion {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="JbsInterchageModel", Namespace="http://schemas.datacontract.org/2004/07/ISCIII.AESEG.JustificationService")]
     [System.SerializableAttribute()]
-    public partial class JbsInterchageModel : Aeseg.ProxyJustificacion.JInterchageModel {
+    public partial class JbsInterchageModel : ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JInterchageModel {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private decimal BaseImponibleField;
@@ -962,7 +962,7 @@ namespace Aeseg.ProxyJustificacion {
         private string DescripcionResultadoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Aeseg.ProxyJustificacion.JError[] ErroresField;
+        private ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JError[] ErroresField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ExpedienteField;
@@ -974,7 +974,7 @@ namespace Aeseg.ProxyJustificacion {
         private int IdPartidaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Aeseg.ProxyJustificacion.ResultadoCarga ResultadoCargaField;
+        private ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.ResultadoCarga ResultadoCargaField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1013,7 +1013,7 @@ namespace Aeseg.ProxyJustificacion {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Aeseg.ProxyJustificacion.JError[] Errores {
+        public ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JError[] Errores {
             get {
                 return this.ErroresField;
             }
@@ -1065,7 +1065,7 @@ namespace Aeseg.ProxyJustificacion {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Aeseg.ProxyJustificacion.ResultadoCarga ResultadoCarga {
+        public ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.ResultadoCarga ResultadoCarga {
             get {
                 return this.ResultadoCargaField;
             }
@@ -1164,22 +1164,22 @@ namespace Aeseg.ProxyJustificacion {
     public interface IJustification {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://aeseg.isciii.es/IJustification/LoadJbs", ReplyAction="http://aeseg.isciii.es/IJustification/LoadJbsResponse")]
-        Aeseg.ProxyJustificacion.LoadResult LoadJbs(Aeseg.ProxyJustificacion.JbsInterchageModel jbs);
+        ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.LoadResult LoadJbs(ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JbsInterchageModel jbs);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://aeseg.isciii.es/IJustification/LoadJbs", ReplyAction="http://aeseg.isciii.es/IJustification/LoadJbsResponse")]
-        System.Threading.Tasks.Task<Aeseg.ProxyJustificacion.LoadResult> LoadJbsAsync(Aeseg.ProxyJustificacion.JbsInterchageModel jbs);
+        System.Threading.Tasks.Task<ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.LoadResult> LoadJbsAsync(ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JbsInterchageModel jbs);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://aeseg.isciii.es/IJustification/LoadJpersonal", ReplyAction="http://aeseg.isciii.es/IJustification/LoadJpersonalResponse")]
-        Aeseg.ProxyJustificacion.LoadResult LoadJpersonal(Aeseg.ProxyJustificacion.JpersonalInterchageModel jpersonal);
+        ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.LoadResult LoadJpersonal(ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JpersonalInterchageModel jpersonal);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://aeseg.isciii.es/IJustification/LoadJpersonal", ReplyAction="http://aeseg.isciii.es/IJustification/LoadJpersonalResponse")]
-        System.Threading.Tasks.Task<Aeseg.ProxyJustificacion.LoadResult> LoadJpersonalAsync(Aeseg.ProxyJustificacion.JpersonalInterchageModel jpersonal);
+        System.Threading.Tasks.Task<ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.LoadResult> LoadJpersonalAsync(ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JpersonalInterchageModel jpersonal);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://aeseg.isciii.es/IJustification/LoadJviajes", ReplyAction="http://aeseg.isciii.es/IJustification/LoadJviajesResponse")]
-        Aeseg.ProxyJustificacion.LoadResult LoadJviajes(Aeseg.ProxyJustificacion.JviajeInterchageModel jviaje);
+        ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.LoadResult LoadJviajes(ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JviajeInterchageModel jviaje);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://aeseg.isciii.es/IJustification/LoadJviajes", ReplyAction="http://aeseg.isciii.es/IJustification/LoadJviajesResponse")]
-        System.Threading.Tasks.Task<Aeseg.ProxyJustificacion.LoadResult> LoadJviajesAsync(Aeseg.ProxyJustificacion.JviajeInterchageModel jviaje);
+        System.Threading.Tasks.Task<ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.LoadResult> LoadJviajesAsync(ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JviajeInterchageModel jviaje);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://aeseg.isciii.es/IJustification/GetVersion", ReplyAction="http://aeseg.isciii.es/IJustification/GetVersionResponse")]
         string GetVersion();
@@ -1195,12 +1195,12 @@ namespace Aeseg.ProxyJustificacion {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IJustificationChannel : Aeseg.ProxyJustificacion.IJustification, System.ServiceModel.IClientChannel {
+    public interface IJustificationChannel : ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.IJustification, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class JustificationClient : System.ServiceModel.ClientBase<Aeseg.ProxyJustificacion.IJustification>, Aeseg.ProxyJustificacion.IJustification {
+    public partial class JustificationClient : System.ServiceModel.ClientBase<ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.IJustification>, ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.IJustification {
         
         public JustificationClient() {
         }
@@ -1221,27 +1221,27 @@ namespace Aeseg.ProxyJustificacion {
                 base(binding, remoteAddress) {
         }
         
-        public Aeseg.ProxyJustificacion.LoadResult LoadJbs(Aeseg.ProxyJustificacion.JbsInterchageModel jbs) {
+        public ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.LoadResult LoadJbs(ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JbsInterchageModel jbs) {
             return base.Channel.LoadJbs(jbs);
         }
         
-        public System.Threading.Tasks.Task<Aeseg.ProxyJustificacion.LoadResult> LoadJbsAsync(Aeseg.ProxyJustificacion.JbsInterchageModel jbs) {
+        public System.Threading.Tasks.Task<ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.LoadResult> LoadJbsAsync(ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JbsInterchageModel jbs) {
             return base.Channel.LoadJbsAsync(jbs);
         }
         
-        public Aeseg.ProxyJustificacion.LoadResult LoadJpersonal(Aeseg.ProxyJustificacion.JpersonalInterchageModel jpersonal) {
+        public ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.LoadResult LoadJpersonal(ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JpersonalInterchageModel jpersonal) {
             return base.Channel.LoadJpersonal(jpersonal);
         }
         
-        public System.Threading.Tasks.Task<Aeseg.ProxyJustificacion.LoadResult> LoadJpersonalAsync(Aeseg.ProxyJustificacion.JpersonalInterchageModel jpersonal) {
+        public System.Threading.Tasks.Task<ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.LoadResult> LoadJpersonalAsync(ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JpersonalInterchageModel jpersonal) {
             return base.Channel.LoadJpersonalAsync(jpersonal);
         }
         
-        public Aeseg.ProxyJustificacion.LoadResult LoadJviajes(Aeseg.ProxyJustificacion.JviajeInterchageModel jviaje) {
+        public ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.LoadResult LoadJviajes(ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JviajeInterchageModel jviaje) {
             return base.Channel.LoadJviajes(jviaje);
         }
         
-        public System.Threading.Tasks.Task<Aeseg.ProxyJustificacion.LoadResult> LoadJviajesAsync(Aeseg.ProxyJustificacion.JviajeInterchageModel jviaje) {
+        public System.Threading.Tasks.Task<ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.LoadResult> LoadJviajesAsync(ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JviajeInterchageModel jviaje) {
             return base.Channel.LoadJviajesAsync(jviaje);
         }
         

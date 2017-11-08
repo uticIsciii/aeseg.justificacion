@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Aeseg.ProxyJustificacion;
-using CsvHelper.Configuration;
+﻿using CsvHelper.Configuration;
+using ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion;
 
-namespace ClienteJustificacion
+namespace ISCIII.AESEG.ClienteJustificacion.BLL
 {
     public class JpersonalInterchageModelCsvMap : CsvClassMap<JpersonalInterchageModel>
     {

@@ -4,12 +4,20 @@
 
 /ClienteJustificacion/bin/Debug
 /ClienteJustificacion/obj/Debug
+/ClienteJustificacionApp/bin/Debug
+/ClienteJustificacionApp/obj/Debug
+/ClienteJustificacionConsole/bin/Debug
+/ClienteJustificacionConsole/obj/Debug
 /packages
 /ProxyJustificacionService/bin/Debug
 /ProxyJustificacionService/obj/Debug
-/ClienteJustificacion/bin
+/ClienteJustificacion/bin/Release
 /ClienteJustificacion/obj/Release
+/ClienteJustificacionApp/bin/Release
+/ClienteJustificacionApp/obj/Release
+/ClienteJustificacionConsole/bin/Release
+/ClienteJustificacionConsole/obj/Release
 /ProxyJustificacionService/bin/Release
 /ProxyJustificacionService/obj/Release
 /.vs/ClienteJustificacionAESEG/v14
-/ClienteJustificacion\/lienteJustificacion.csproj.user
+/.vs/ISCIII.AESEG.ClienteJustificacion/v15

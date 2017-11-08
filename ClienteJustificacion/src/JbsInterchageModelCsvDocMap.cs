@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Aeseg.ProxyJustificacion;
-using CsvHelper.Configuration;
+﻿using CsvHelper.Configuration;
+using ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion;
 
-
-namespace ClienteJustificacion
+namespace ISCIII.AESEG.ClienteJustificacion.BLL
 {
     public sealed class JbsInterchageModelCsvDocMap : CsvClassMap<JbsInterchageModel>
     {
@@ -27,7 +21,7 @@ namespace ClienteJustificacion
             Map(m => m.Observaciones).Name("OBSERVACIONES");
             Map(m => m.NumeroFactura).Name("NUMERO_FACTURA");
             Map(m => m.NIF).Name("NIF"); //Nif o Cif del Proveedor
-            Map(m => m.NombreProveedor).Name("NOMBRE"); //Nombre del Proveedor 
+            Map(m => m.NombreProveedor).Name("NOMBRE"); //Nombre del Proveedor
             Map(m => m.DescripcionConcepto).Name("CONCEPTO");
             Map(m => m.FechaFactura).Name("FECHA_JUST");
             Map(m => m.BaseImponible).Name("BASE_IMP");
