@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:i0="http://aeseg.isciii.es" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsp:Policy wsu:Id="WSHttpBinding_IJustification_policy">
+  <wsp:Policy wsu:Id="justificacionWsBinding_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SymmetricBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -106,7 +106,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IJustification_LoadJbs_Input_policy">
+  <wsp:Policy wsu:Id="justificacionWsBinding_LoadJbs_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -125,7 +125,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IJustification_LoadJbs_output_policy">
+  <wsp:Policy wsu:Id="justificacionWsBinding_LoadJbs_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -144,7 +144,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IJustification_LoadJpersonal_Input_policy">
+  <wsp:Policy wsu:Id="justificacionWsBinding_LoadJpersonal_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -163,7 +163,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IJustification_LoadJpersonal_output_policy">
+  <wsp:Policy wsu:Id="justificacionWsBinding_LoadJpersonal_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -182,7 +182,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IJustification_LoadJviajes_Input_policy">
+  <wsp:Policy wsu:Id="justificacionWsBinding_LoadJviajes_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -201,7 +201,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IJustification_LoadJviajes_output_policy">
+  <wsp:Policy wsu:Id="justificacionWsBinding_LoadJviajes_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -220,7 +220,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IJustification_GetVersion_Input_policy">
+  <wsp:Policy wsu:Id="justificacionWsBinding_GetVersion_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -239,7 +239,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IJustification_GetVersion_output_policy">
+  <wsp:Policy wsu:Id="justificacionWsBinding_GetVersion_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -258,7 +258,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IJustification_Test_Input_policy">
+  <wsp:Policy wsu:Id="justificacionWsBinding_Test_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -277,7 +277,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IJustification_Test_output_policy">
+  <wsp:Policy wsu:Id="justificacionWsBinding_Test_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -298,61 +298,61 @@
   </wsp:Policy>
   <wsdl:import namespace="http://aeseg.isciii.es" location="http://aeseg.pre.isciii.es/Services/Justificantes.svc?wsdl" />
   <wsdl:types />
-  <wsdl:binding name="WSHttpBinding_IJustification" type="i0:IJustification">
-    <wsp:PolicyReference URI="#WSHttpBinding_IJustification_policy" />
+  <wsdl:binding name="justificacionWsBinding" type="i0:IJustification">
+    <wsp:PolicyReference URI="#justificacionWsBinding_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="LoadJbs">
       <soap12:operation soapAction="http://aeseg.isciii.es/IJustification/LoadJbs" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IJustification_LoadJbs_Input_policy" />
+        <wsp:PolicyReference URI="#justificacionWsBinding_LoadJbs_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IJustification_LoadJbs_output_policy" />
+        <wsp:PolicyReference URI="#justificacionWsBinding_LoadJbs_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="LoadJpersonal">
       <soap12:operation soapAction="http://aeseg.isciii.es/IJustification/LoadJpersonal" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IJustification_LoadJpersonal_Input_policy" />
+        <wsp:PolicyReference URI="#justificacionWsBinding_LoadJpersonal_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IJustification_LoadJpersonal_output_policy" />
+        <wsp:PolicyReference URI="#justificacionWsBinding_LoadJpersonal_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="LoadJviajes">
       <soap12:operation soapAction="http://aeseg.isciii.es/IJustification/LoadJviajes" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IJustification_LoadJviajes_Input_policy" />
+        <wsp:PolicyReference URI="#justificacionWsBinding_LoadJviajes_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IJustification_LoadJviajes_output_policy" />
+        <wsp:PolicyReference URI="#justificacionWsBinding_LoadJviajes_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetVersion">
       <soap12:operation soapAction="http://aeseg.isciii.es/IJustification/GetVersion" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IJustification_GetVersion_Input_policy" />
+        <wsp:PolicyReference URI="#justificacionWsBinding_GetVersion_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IJustification_GetVersion_output_policy" />
+        <wsp:PolicyReference URI="#justificacionWsBinding_GetVersion_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Test">
       <soap12:operation soapAction="http://aeseg.isciii.es/IJustification/Test" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IJustification_Test_Input_policy" />
+        <wsp:PolicyReference URI="#justificacionWsBinding_Test_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IJustification_Test_output_policy" />
+        <wsp:PolicyReference URI="#justificacionWsBinding_Test_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
