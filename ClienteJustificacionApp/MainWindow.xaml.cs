@@ -1,9 +1,9 @@
-﻿using ISCIII.AESEG.ClienteJustificacion.BLL;
-using NLog.Targets;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
+using ISCIII.AESEG.ClienteJustificacion.BLL;
+using NLog.Targets;
 
 namespace ISCIII.AESEG.ClienteJustificacion.Desktop
 {
@@ -75,15 +75,15 @@ namespace ISCIII.AESEG.ClienteJustificacion.Desktop
                         switch (argumentos.FileType)
                         {
                             case JustificacionFileType.Bienes:
-                                Process.ProcessJbs(argumentos);
+                                Process.ProcesarJustificantesBienesServicios(argumentos);
                                 break;
 
                             case JustificacionFileType.Viajes:
-                                Process.ProcessJviajes(argumentos);
+                                Process.ProcesarJustificantesViajes(argumentos);
                                 break;
 
                             case JustificacionFileType.Personal:
-                                Process.ProcessJpersonal(argumentos);
+                                Process.ProcesarJustificantesPersonal(argumentos);
                                 break;
 
                             default:
@@ -92,7 +92,7 @@ namespace ISCIII.AESEG.ClienteJustificacion.Desktop
                     });
 
                     await tarea;
-                } 
+                }
             }
             catch (System.IO.FileNotFoundException ex)
             {
@@ -138,6 +138,7 @@ namespace ISCIII.AESEG.ClienteJustificacion.Desktop
                 case "Viajes":
                 case "Personal":
                     break;
+
                 default:
                     CajaResultados.Document.Blocks.Add(new Paragraph(new Run("El tipo de justificante no es válido")));
                     valido = false;

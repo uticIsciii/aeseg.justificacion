@@ -7,9 +7,7 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
     {
         public JbsInterchageModelCsvDocMap()
         {
-            //Campos del csv "BIENES_SERV_.csv"
-            //ID_EXPEDIENTE;ID_PARTIDA;ID_CONCEPTO;IMPORTE_TOTAL;IMPORTE_IMPUTADO;FECHA_PAGO;TIPO_JUSTIFICANTE;ANUALIDAD;OBSERVACIONES;NUMERO_FACTURA;NIF;NOMBRE;CONCEPTO;FECHA_JUST;BASE_IMP;TIPO_IMP;DOC_FACTURA;DOC_PAGO;DOC_OTROS
-
+            //Campos del csv "JBIENES_SERV_WS.csv"
             Map(m => m.Expediente).Name("ID_EXPEDIENTE");
             Map(m => m.IdPartida).Name("ID_PARTIDA"); //Partida a la que se imputa el gasto
             Map(m => m.idConcepto).Name("ID_CONCEPTO"); //Concepto al que se imputa el gasto
@@ -17,7 +15,6 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
             Map(m => m.ImporteImputado).Name("IMPORTE_IMPUTADO"); //Parte del importe total que se imputa a la subvención
             Map(m => m.FechaPago).Name("FECHA_PAGO");
             Map(m => m.idTipoJustificante).Name("TIPO_JUSTIFICANTE"); //Puede ser de tres tipos: Factura, ticket o albarán
-            Map(m => m.Anualidad).Name("ANUALIDAD"); //Año al que se imputa el gasto
             Map(m => m.Observaciones).Name("OBSERVACIONES");
             Map(m => m.NumeroFactura).Name("NUMERO_FACTURA");
             Map(m => m.NIF).Name("NIF"); //Nif o Cif del Proveedor

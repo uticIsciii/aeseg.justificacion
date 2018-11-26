@@ -86,15 +86,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="csv\BIENES_SERV_.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="csv\PERSONAL_.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="csv\VIAJES_.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="csv\JBIENES_SERVICIOS_WS.csv" />
+    <None Include="csv\JPERSONAL_WS.csv" />
+    <None Include="csv\JVIAJES_WS.csv" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

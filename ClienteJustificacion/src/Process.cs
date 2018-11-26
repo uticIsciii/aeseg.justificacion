@@ -1,12 +1,12 @@
-﻿using CsvHelper;
-using CsvHelper.Configuration;
-using ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion;
-using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.ServiceModel.Security;
+using CsvHelper;
+using CsvHelper.Configuration;
+using ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion;
+using NLog;
 
 namespace ISCIII.AESEG.ClienteJustificacion.BLL
 {
@@ -18,25 +18,23 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
 
         #endregion PROPIEDADES
 
-
-
         #region MÉTODOS PRINCIPALES DE PROCESOS DE OBTENCIÓN Y ENVIO DE DATOS DE JUSTIFICANTES (BIENES Y SERVICIOS, PERSONAL Y VIAJE) AL SERVICIO WEB JUSTIFICACIÓN
 
-        public static void ProcessJbs(ClientArgs clientArgs)
+        public static void ProcesarJustificantesBienesServicios(ClientArgs clientArgs)
         {
             var records = CargarCsv<JbsInterchageModel, JbsInterchageModelCsvDocMap>(clientArgs.File);
             _logger.Info("Cargado fichero {0}", clientArgs.File);
             var result = SendRecords(records.Cast<JInterchageModel>().ToList(), clientArgs.User, clientArgs.Password);
         }
 
-        public static void ProcessJpersonal(ClientArgs clientArgs)
+        public static void ProcesarJustificantesPersonal(ClientArgs clientArgs)
         {
             var records = CargarCsv<JpersonalInterchageModel, JpersonalInterchageModelCsvMap>(clientArgs.File);
             _logger.Info("Cargado fichero {0}", clientArgs.File);
             var result = SendRecords(records.Cast<JInterchageModel>().ToList(), clientArgs.User, clientArgs.Password);
         }
 
-        public static void ProcessJviajes(ClientArgs clientArgs)
+        public static void ProcesarJustificantesViajes(ClientArgs clientArgs)
         {
             var records = CargarCsv<JviajeInterchageModel, JviajesInterchageModelCsvMap>(clientArgs.File);
             _logger.Info("Cargado fichero {0}", clientArgs.File);
@@ -108,7 +106,7 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
                 client.ClientCredentials.UserName.Password = password;
                 client.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.None;
 
-                int total = records.Count();
+                int total = records.Count;
 
                 foreach (var item in records.Select((value, i) => new { i, value }))
                 {
@@ -148,15 +146,23 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
 
                         var j = (JpersonalInterchageModel)item.value;
                         //Carga de documentos múltiples en modelo Justificante de Personal
-                        j.FicheroPerNomina = File.ReadAllBytes(j.NombreFicheroPerNomina);
-                        j.NombreFicheroPerNomina = Path.GetFileName(j.NombreFicheroPerNomina);
+                        if (!string.IsNullOrEmpty(j.NombreFicheroPerNomina))
+                        {
+                            j.FicheroPerNomina = File.ReadAllBytes(j.NombreFicheroPerNomina);
+                            j.NombreFicheroPerNomina = Path.GetFileName(j.NombreFicheroPerNomina);
+                        }
 
-                        j.FicheroPerPago = File.ReadAllBytes(j.NombreFicheroPerPago);
-                        j.NombreFicheroPerPago = Path.GetFileName(j.NombreFicheroPerPago);
+                        if (!string.IsNullOrEmpty(j.NombreFicheroPerPago))
+                        {
+                            j.FicheroPerPago = File.ReadAllBytes(j.NombreFicheroPerPago);
+                            j.NombreFicheroPerPago = Path.GetFileName(j.NombreFicheroPerPago);
+                        }
 
-                        j.FicheroPerOtros = File.ReadAllBytes(j.NombreFicheroPerOtros);
-                        j.NombreFicheroPerOtros = Path.GetFileName(j.NombreFicheroPerOtros);
-
+                        if (!string.IsNullOrEmpty(j.NombreFicheroPerOtros))
+                        {
+                            j.FicheroPerOtros = File.ReadAllBytes(j.NombreFicheroPerOtros);
+                            j.NombreFicheroPerOtros = Path.GetFileName(j.NombreFicheroPerOtros);
+                        }
                         r = client.LoadJpersonal(j); //Llamada al método LoadJpersonal del servicio web justificación
 
                         resultadosEnvio.Add(r);
@@ -166,16 +172,26 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
                     else if (item.value is JviajeInterchageModel)
                     {
                         #region Llamada al Servicio Web de Justificación Viaje
+
                         var j = (JviajeInterchageModel)item.value;
                         //Carga de documentos múltiples en modelo Justificante de Viaje
-                        j.FicheroViajeFactura = File.ReadAllBytes(j.NombreFicheroViajeFactura);
-                        j.NombreFicheroViajeFactura = Path.GetFileName(j.NombreFicheroViajeFactura);
+                        if (!string.IsNullOrEmpty(j.NombreFicheroViajeFactura))
+                        {
+                            j.FicheroViajeFactura = File.ReadAllBytes(j.NombreFicheroViajeFactura);
+                            j.NombreFicheroViajeFactura = Path.GetFileName(j.NombreFicheroViajeFactura);
+                        }
 
-                        j.FicheroViajePago = File.ReadAllBytes(j.NombreFicheroViajePago);
-                        j.NombreFicheroViajePago = Path.GetFileName(j.NombreFicheroViajePago);
+                        if (!string.IsNullOrEmpty(j.NombreFicheroViajePago))
+                        {
+                            j.FicheroViajePago = File.ReadAllBytes(j.NombreFicheroViajePago);
+                            j.NombreFicheroViajePago = Path.GetFileName(j.NombreFicheroViajePago);
+                        }
 
-                        j.FicheroViajeOtros = File.ReadAllBytes(j.NombreFicheroViajeOtros);
-                        j.NombreFicheroViajeOtros = Path.GetFileName(j.NombreFicheroViajeOtros);
+                        if (!string.IsNullOrEmpty(j.NombreFicheroViajeOtros))
+                        {
+                            j.FicheroViajeOtros = File.ReadAllBytes(j.NombreFicheroViajeOtros);
+                            j.NombreFicheroViajeOtros = Path.GetFileName(j.NombreFicheroViajeOtros);
+                        }
 
                         r = client.LoadJviajes(j); //Llamada al método LoadJviajes del servicio web justificación
 
@@ -186,7 +202,6 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
                     else
                     {
                         throw new ArgumentException("Tipo de datos incorrecto.");
-                        //_logger.Warn("Error: Tipo de datos incorrecto");
                     }
 
                     _logger.Info("Carga de justificante {0} de {1}, Expediente: {2}. Resultado {3} - {4}", item.i + 1, total, item.value.Expediente, r.ResultadoCarga, r.DescripcionResultado);
@@ -197,18 +212,21 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
                             _logger.Warn("Carga de justificante {0} de {1}, Expediente: {2}. Error: {3} - {4}", item.i + 1, total, item.value.Expediente, error.Nombre, error.Descripcion);
                         }
                     }
-                    //}
                     _logger.Info("Terminado.");
                 }
 
                 return resultadosEnvio;
             }
-            // Esta excepción se puede generar en distintos escenarios, por ej: si el usuario/contraseña no son correctos 
+            // Esta excepción se puede generar en distintos escenarios, por ej: si el usuario/contraseña no son correctos
             // o si el tipo de autenticación del cliente y del servidor no coinciden
-            catch (MessageSecurityException ex)
+            catch (MessageSecurityException e)
             {
                 _logger.Warn("Ocurrió un error al autenticar al usuario");
-                _logger.Warn(ex.InnerException.Message);
+                _logger.Warn(e);
+                if (e.InnerException != null)
+                {
+                    _logger.Warn(e.InnerException.Message);
+                }
                 throw;
             }
 

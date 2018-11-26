@@ -1,10 +1,10 @@
-﻿using NLog;
-using NLog.Targets;
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Threading;
+using NLog;
+using NLog.Targets;
 
 namespace ISCIII.AESEG.ClienteJustificacion.Desktop
 {

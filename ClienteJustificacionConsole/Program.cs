@@ -1,7 +1,7 @@
-﻿using ISCIII.AESEG.ClienteJustificacion.BLL;
+﻿using System;
+using ISCIII.AESEG.ClienteJustificacion.BLL;
 using NLog;
 using PowerArgs;
-using System;
 
 namespace ISCIII.AESEG.ClienteJustificacion.Console
 {
@@ -19,21 +19,21 @@ namespace ISCIII.AESEG.ClienteJustificacion.Console
         {
             try
             {
-                var clientArgs = Args.Parse<ClientArgs>(args);
-                _logger.Info("Proceso del fichero: {0}; {1}; {2}; {3};", clientArgs.User, "*****", clientArgs.FileType, clientArgs.File);
+                var argumentos = Args.Parse<ClientArgs>(args);
+                _logger.Info("Proceso del fichero: {0}; {1}; {2}; {3};", argumentos.User, "*****", argumentos.FileType, argumentos.File);
 
-                switch (clientArgs.FileType)
+                switch (argumentos.FileType)
                 {
                     case JustificacionFileType.Bienes:
-                        Process.ProcessJbs(clientArgs);
+                        Process.ProcesarJustificantesBienesServicios(argumentos);
                         break;
 
                     case JustificacionFileType.Viajes:
-                        Process.ProcessJviajes(clientArgs);
+                        Process.ProcesarJustificantesViajes(argumentos);
                         break;
 
                     case JustificacionFileType.Personal:
-                        Process.ProcessJpersonal(clientArgs);
+                        Process.ProcesarJustificantesPersonal(argumentos);
                         break;
 
                     default:
