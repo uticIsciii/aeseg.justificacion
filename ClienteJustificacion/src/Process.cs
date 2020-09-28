@@ -100,6 +100,14 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
 
             var client = new JustificationClient();
 
+            #region Descomentar código para ignorar certificados
+
+            //System.Net.ServicePointManager.ServerCertificateValidationCallback =
+            //delegate (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+            //{ return true; };
+
+            #endregion
+
             try
             {
                 client.ClientCredentials.UserName.UserName = usuario;
