@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://aeseg.isciii.es" elementFormDefault="qualified" targetNamespace="http://aeseg.isciii.es" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://aeseg.pre.isciii.es/Services/Justificantes.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ISCIII.AESEG.JustificationService" />
+  <xs:import schemaLocation="http://aeseg.isciii.es/Services/Justificantes.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ISCIII.AESEG.JustificationService" />
   <xs:element name="LoadJbs">
     <xs:complexType>
       <xs:sequence>

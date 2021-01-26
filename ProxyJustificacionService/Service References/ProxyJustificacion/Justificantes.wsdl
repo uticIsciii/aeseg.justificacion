@@ -296,7 +296,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsdl:import namespace="http://aeseg.isciii.es" location="http://aeseg.pre.isciii.es/Services/Justificantes.svc?wsdl" />
+  <wsdl:import namespace="http://aeseg.isciii.es" location="http://aeseg.isciii.es/Services/Justificantes.svc?wsdl" />
   <wsdl:types />
   <wsdl:binding name="justificacionWsBinding" type="i0:IJustification">
     <wsp:PolicyReference URI="#justificacionWsBinding_policy" />
