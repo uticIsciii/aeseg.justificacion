@@ -24,6 +24,11 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
         [ArgExistingFile]
         [ArgDescription("Ruta del fichero csv.")]
         public string File { get; set; }
+
+        [ArgShortcut("c")]
+        [ArgExistingFile]
+        [ArgDescription("Codificación de fichero.")]
+        public Codificacion Encoding { get; set; }
     }
 
     public enum JustificacionFileType
@@ -31,5 +36,11 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
         Bienes,
         Viajes,
         Personal
+    }
+
+    public enum Codificacion
+    {
+        UTF8,
+        Windows1252
     }
 }

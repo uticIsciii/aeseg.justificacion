@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.ServiceModel.Security;
+using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 using ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion;
@@ -22,21 +23,21 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
 
         public static void ProcesarJustificantesBienesServicios(ClientArgs clientArgs)
         {
-            var records = CargarCsv<JbsInterchageModel, JbsInterchageModelCsvDocMap>(clientArgs.File);
+            var records = CargarCsv<JbsInterchageModel, JbsInterchageModelCsvDocMap>(clientArgs.File, clientArgs.Encoding);
             _logger.Info("Cargado fichero {0}", clientArgs.File);
             var result = SendRecords(records.Cast<JInterchageModel>().ToList(), clientArgs.User, clientArgs.Password);
         }
 
         public static void ProcesarJustificantesPersonal(ClientArgs clientArgs)
         {
-            var records = CargarCsv<JpersonalInterchageModel, JpersonalInterchageModelCsvMap>(clientArgs.File);
+            var records = CargarCsv<JpersonalInterchageModel, JpersonalInterchageModelCsvMap>(clientArgs.File, clientArgs.Encoding);
             _logger.Info("Cargado fichero {0}", clientArgs.File);
             var result = SendRecords(records.Cast<JInterchageModel>().ToList(), clientArgs.User, clientArgs.Password);
         }
 
         public static void ProcesarJustificantesViajes(ClientArgs clientArgs)
         {
-            var records = CargarCsv<JviajeInterchageModel, JviajesInterchageModelCsvMap>(clientArgs.File);
+            var records = CargarCsv<JviajeInterchageModel, JviajesInterchageModelCsvMap>(clientArgs.File, clientArgs.Encoding);
             _logger.Info("Cargado fichero {0}", clientArgs.File);
             var result = SendRecords(records.Cast<JInterchageModel>().ToList(), clientArgs.User, clientArgs.Password);
         }
@@ -51,13 +52,15 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
         /// <typeparam name="T"></typeparam>
         /// <param name="path"></param>
         /// <returns></returns>
-        private static List<T> CargarCsv<T, U>(string path) where T : JInterchageModel where U : CsvClassMap
+        private static List<T> CargarCsv<T, U>(string path, Codificacion codificacion) where T : JInterchageModel where U : CsvClassMap
         {
             #region OBTENCIÓN DE DATOS DEL CSV (BIENES Y SERVICIOS, PERSONAL, O VIAJE)
 
             //Carga y parseo del fichero de datos jbs
             var parseErrors = new List<ParseResult>(); //Listado de errores de parseo
-            var csv = new CsvReader(new StreamReader(path));
+            Encoding encoding = GetEncoding(codificacion);
+
+            var csv = new CsvReader(new StreamReader(path, encoding));
             csv.Configuration.Delimiter = ";";
             csv.Configuration.RegisterClassMap<U>();
             csv.Configuration.IgnoreReadingExceptions = true;
@@ -71,16 +74,28 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
 
             if (parseErrors.Any())
             {
-                _logger.Warn("Se ha encontrado errores en el fichero de entrada, corrijalos antes de continuar.");
+                _logger.Warn("Se han encontrado errores en el fichero de entrada, por favor, corríjalos antes de continuar.");
                 foreach (var error in parseErrors)
                 {
-                    _logger.Warn("Linea: {0}; Error {1};", error.Id, error.Descripcion);
+                    _logger.Warn("Error en la línea {0} --> {1};", error.Id, error.Descripcion);
                 }
-                throw new ArgumentException("Formato del fichero de entrada no valido.");
+                throw new ArgumentException("El formato del fichero de entrada no es válido. Se ha cancelado la operación.");
             }
             return records;
 
             #endregion OBTENCIÓN DE DATOS DEL CSV (BIENES Y SERVICIOS, PERSONAL, O VIAJE)
+        }
+
+        private static Encoding GetEncoding(Codificacion codificacion)
+        {
+            switch (codificacion)
+            {
+                case Codificacion.Windows1252:
+                    return Encoding.GetEncoding("Windows-1252");
+                case Codificacion.UTF8:
+                default:
+                    return Encoding.UTF8;
+            }
         }
 
         #endregion MÉTODO DE OBTENCIÓN DE DATOS DE JUSTIFICANTES

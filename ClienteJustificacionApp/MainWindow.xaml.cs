@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
@@ -20,6 +21,7 @@ namespace ISCIII.AESEG.ClienteJustificacion.Desktop
 
             // Inicialización de NLog
             Target.Register<CustomTarget>("CajaTexto");
+            LabelVersion.Content = $"v{GetRunningVersion()}";
         }
 
         private async void Enviar_Click(object sender, RoutedEventArgs e)
@@ -40,7 +42,7 @@ namespace ISCIII.AESEG.ClienteJustificacion.Desktop
                     JustificacionFileType tipoJustificacion = JustificacionFileType.Bienes;
                     switch (tipo)
                     {
-                        case "Bienes":
+                        case "Bienes y servicios":
                             tipoJustificacion = JustificacionFileType.Bienes;
                             break;
 
@@ -57,12 +59,27 @@ namespace ISCIII.AESEG.ClienteJustificacion.Desktop
                             break;
                     }
 
+                    string opcionCodificacion = CajaCodificacion.Text;
+                    var codificacion = Codificacion.UTF8;
+                    switch (opcionCodificacion)
+                    {
+                        case "Windows-1252":
+                            codificacion = Codificacion.Windows1252;
+                            break;
+
+                        case "UTF-8":
+                        default:
+                            codificacion = Codificacion.UTF8;
+                            break;
+                    }
+
                     ClientArgs argumentos = new ClientArgs()
                     {
                         File = ruta,
                         FileType = tipoJustificacion,
                         Password = password,
-                        User = usuario
+                        User = usuario,
+                        Encoding = codificacion
                     };
 
                     CajaResultados.Document.Blocks.Add(new Paragraph(new Run("Procesando fichero...")));
@@ -134,7 +151,7 @@ namespace ISCIII.AESEG.ClienteJustificacion.Desktop
 
             switch (tipo)
             {
-                case "Bienes":
+                case "Bienes y servicios":
                 case "Viajes":
                 case "Personal":
                     break;
@@ -169,6 +186,11 @@ namespace ISCIII.AESEG.ClienteJustificacion.Desktop
                 default:
                     break;
             }
+        }
+
+        private string GetRunningVersion()
+        {
+            return Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ISCIII.AESEG.ClienteJustificacion.Desktop"
         mc:Ignorable="d"
-        Title="ISCIII - Cliente justificación AESEG" Height="600" Width="800" Background="#f7f3f3" ResizeMode="NoResize" Name="VentanaPrincipal">
+        Title="ISCIII - Cliente justificación AESEG" Height="700.000" Width="800" Background="#f7f3f3" ResizeMode="NoResize" Name="VentanaPrincipal">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" MinWidth="140" />
@@ -19,24 +19,31 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Image x:Name="Logo" Source=".\LogoAeseg.png" Grid.ColumnSpan="2" OpacityMask="#FFE2D7D7" Margin="80,10,80,15" />
         <Label x:Name="Título" Grid.Row="1" Padding="15,10,10,10" Grid.ColumnSpan="2" Background="#FF5B88A7" Foreground="White" Grid.RowSpan="2" FontSize="14" FontWeight="Bold">CLIENTE DE ENVÍO DE JUSTIFICANTES</Label>
-        <Label Grid.Row="3" Margin="10" FontWeight="Bold">Usuario:</Label>
-        <TextBox x:Name="CajaUsuario" Grid.Row="3" Grid.Column="1" Margin="10" />
+        <Label Grid.Row="3" Margin="10" FontWeight="Bold" Content="Usuario:" />
+        <TextBox x:Name="CajaUsuario" Grid.Row="3" Grid.Column="1" Margin="10" VerticalContentAlignment="Center" />
         <Label Grid.Row="4" Margin="10" FontWeight="Bold" Content="Contraseña:" />
-        <PasswordBox x:Name="CajaPassword" Grid.Row="4" Grid.Column="1" Margin="10" />
+        <PasswordBox x:Name="CajaPassword" Grid.Row="4" Grid.Column="1" Margin="10" VerticalContentAlignment="Center" />
         <Label Grid.Row="5" Margin="10" FontWeight="Bold" Content="Tipo de justificante:" />
-        <ComboBox x:Name="CajaTipo" Grid.Row="5" Grid.Column="1" Margin="10">
-            <ComboBoxItem Content="Bienes"></ComboBoxItem>
+        <ComboBox x:Name="CajaTipo" Grid.Row="5" Grid.Column="1" Margin="10" VerticalContentAlignment="Center">
+            <ComboBoxItem Content="Bienes y servicios"></ComboBoxItem>
             <ComboBoxItem Content="Viajes"></ComboBoxItem>
             <ComboBoxItem Content="Personal"></ComboBoxItem>
         </ComboBox>
-        <Label Grid.Row="6" Margin="10" FontWeight="Bold" Content="Ruta de fichero:" />
-        <TextBox x:Name="CajaRuta" Grid.Row="6" Grid.Column="1" AcceptsReturn="True" Margin="10,10,137,10" IsReadOnly="True" />
-        <Button x:Name="Examinar" Grid.Row="6" Margin="520,8,10,8" Height="35" Background="#FF5B88A7" Foreground="White" FontWeight="Bold" Click="Examinar_Click" Grid.Column="1">Examinar...</Button>
-        <Button x:Name="Enviar" Grid.Row="7" Margin="10" Height="30" Background="#FF5B88A7" Foreground="White" FontWeight="Bold" Click="Enviar_Click">Enviar</Button>
-        <RichTextBox x:Name="CajaResultados" Grid.Row="7" Grid.Column="1" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Auto" IsReadOnly="True" />
+        <Label Grid.Row="6" Margin="10" FontWeight="Bold" Content="Ruta del fichero CSV:" />
+        <TextBox x:Name="CajaRuta" Grid.Row="6" Grid.Column="1" AcceptsReturn="True" Margin="10,10,121,10" IsReadOnly="True" VerticalContentAlignment="Center" />
+        <Button x:Name="Examinar" Grid.Row="6" Margin="520,8,10,8" Background="#FF5B88A7" Foreground="White" FontWeight="Bold" Click="Examinar_Click" Grid.Column="1">Examinar...</Button>
+        <Button x:Name="Enviar" Grid.Row="8" Margin="10,114,10,145" Background="#FF5B88A7" Foreground="White" FontWeight="Bold" Click="Enviar_Click">Enviar</Button>
+        <Label Grid.Row="7" Margin="10" FontWeight="Bold" Content="Codificación fichero:" />
+        <ComboBox x:Name="CajaCodificacion" Grid.Row="7" Grid.Column="1" Margin="10" VerticalContentAlignment="Center">
+            <ComboBoxItem Content="UTF-8" IsSelected="True"/>
+            <ComboBoxItem Content="Windows-1252"/>
+        </ComboBox>
+        <RichTextBox x:Name="CajaResultados" Grid.Row="8" Grid.Column="1" Margin="10,10,10,10" ScrollViewer.VerticalScrollBarVisibility="Auto" IsReadOnly="True" />
+        <Label x:Name="LabelVersion" Margin="478,7,10,7" Content="Versión" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Right"/>
     </Grid>
 </Window>
