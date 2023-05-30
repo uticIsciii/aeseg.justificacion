@@ -23,6 +23,7 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
             Map(m => m.FechaHasta).Name("FECHA_HASTA");
             Map(m => m.IdCategoriaLaboral).Name("CATEGORIA_LABORAL");
             Map(m => m.Nif).Name("INVESTIGADOR");
+            Map(m => m.DiasBajaIT).Name("DIAS_BAJA_IT (SOLO RRHH)");
         }
     }
 }

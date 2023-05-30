@@ -196,6 +196,9 @@ namespace ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion {
     public partial class JpersonalInterchageModel : ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion.JInterchageModel {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> DiasBajaITField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime FechaDesdeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -224,6 +227,19 @@ namespace ISCIII.AESEG.ClienteJustificacion.Proxy.ProxyJustificacion {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NombreFicheroPerPagoField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> DiasBajaIT {
+            get {
+                return this.DiasBajaITField;
+            }
+            set {
+                if ((this.DiasBajaITField.Equals(value) != true)) {
+                    this.DiasBajaITField = value;
+                    this.RaisePropertyChanged("DiasBajaIT");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime FechaDesde {

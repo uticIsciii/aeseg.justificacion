@@ -13,38 +13,28 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
 {
     public class Process
     {
-        #region PROPIEDADES
-
         private static Logger _logger = LogManager.GetCurrentClassLogger();
-
-        #endregion PROPIEDADES
-
-        #region MÉTODOS PRINCIPALES DE PROCESOS DE OBTENCIÓN Y ENVIO DE DATOS DE JUSTIFICANTES (BIENES Y SERVICIOS, PERSONAL Y VIAJE) AL SERVICIO WEB JUSTIFICACIÓN
 
         public static void ProcesarJustificantesBienesServicios(ClientArgs clientArgs)
         {
             var records = CargarCsv<JbsInterchageModel, JbsInterchageModelCsvDocMap>(clientArgs.File, clientArgs.Encoding);
             _logger.Info("Cargado fichero {0}", clientArgs.File);
-            var result = SendRecords(records.Cast<JInterchageModel>().ToList(), clientArgs.User, clientArgs.Password);
+            SendRecords(records.Cast<JInterchageModel>().ToList(), clientArgs.User, clientArgs.Password);
         }
 
         public static void ProcesarJustificantesPersonal(ClientArgs clientArgs)
         {
             var records = CargarCsv<JpersonalInterchageModel, JpersonalInterchageModelCsvMap>(clientArgs.File, clientArgs.Encoding);
             _logger.Info("Cargado fichero {0}", clientArgs.File);
-            var result = SendRecords(records.Cast<JInterchageModel>().ToList(), clientArgs.User, clientArgs.Password);
+            SendRecords(records.Cast<JInterchageModel>().ToList(), clientArgs.User, clientArgs.Password);
         }
 
         public static void ProcesarJustificantesViajes(ClientArgs clientArgs)
         {
             var records = CargarCsv<JviajeInterchageModel, JviajesInterchageModelCsvMap>(clientArgs.File, clientArgs.Encoding);
             _logger.Info("Cargado fichero {0}", clientArgs.File);
-            var result = SendRecords(records.Cast<JInterchageModel>().ToList(), clientArgs.User, clientArgs.Password);
+            SendRecords(records.Cast<JInterchageModel>().ToList(), clientArgs.User, clientArgs.Password);
         }
-
-        #endregion MÉTODOS PRINCIPALES DE PROCESOS DE OBTENCIÓN Y ENVIO DE DATOS DE JUSTIFICANTES (BIENES Y SERVICIOS, PERSONAL Y VIAJE) AL SERVICIO WEB JUSTIFICACIÓN
-
-        #region MÉTODO DE OBTENCIÓN DE DATOS DE JUSTIFICANTES
 
         /// <summary>
         /// Procesa el fichero CSV de entrada
@@ -54,8 +44,6 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
         /// <returns></returns>
         private static List<T> CargarCsv<T, U>(string path, Codificacion codificacion) where T : JInterchageModel where U : CsvClassMap
         {
-            #region OBTENCIÓN DE DATOS DEL CSV (BIENES Y SERVICIOS, PERSONAL, O VIAJE)
-
             //Carga y parseo del fichero de datos jbs
             var parseErrors = new List<ParseResult>(); //Listado de errores de parseo
             Encoding encoding = GetEncoding(codificacion);
@@ -82,8 +70,6 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
                 throw new ArgumentException("El formato del fichero de entrada no es válido. Se ha cancelado la operación.");
             }
             return records;
-
-            #endregion OBTENCIÓN DE DATOS DEL CSV (BIENES Y SERVICIOS, PERSONAL, O VIAJE)
         }
 
         private static Encoding GetEncoding(Codificacion codificacion)
@@ -92,15 +78,12 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
             {
                 case Codificacion.Windows1252:
                     return Encoding.GetEncoding("Windows-1252");
+
                 case Codificacion.UTF8:
                 default:
                     return Encoding.UTF8;
             }
         }
-
-        #endregion MÉTODO DE OBTENCIÓN DE DATOS DE JUSTIFICANTES
-
-        #region MÉTODO DE ENVIO DE DATOS DE JUSTIFICANTES
 
         /// <summary>
         /// Envio de datos al WS - JUSTIFICACIÓN
@@ -109,122 +92,102 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
         /// <returns></returns>
         private static List<LoadResult> SendRecords(List<JInterchageModel> records, string usuario, string password)
         {
-            #region ENVÍO DE DATOS A MÉTODOS DEL SERVICIO WEB JUSTIFICACIÓN
-
-            var resultadosEnvio = new List<LoadResult>();
-
-            var client = new JustificationClient();
-
-            #region Descomentar código para ignorar certificados
-
-            //System.Net.ServicePointManager.ServerCertificateValidationCallback =
-            //delegate (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
-            //{ return true; };
-
-            #endregion
-
             try
             {
+                #region Descomentar código para ignorar certificados
+
+                //System.Net.ServicePointManager.ServerCertificateValidationCallback =
+                //delegate (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+                //{ return true; };
+
+                #endregion
+
+                var client = new JustificationClient();
                 client.ClientCredentials.UserName.UserName = usuario;
                 client.ClientCredentials.UserName.Password = password;
                 client.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.None;
 
+                var resultadosEnvio = new List<LoadResult>();
                 int total = records.Count;
 
                 foreach (var item in records.Select((value, i) => new { i, value }))
                 {
                     LoadResult r;
-                    if (item.value is JbsInterchageModel)
+                    _logger.Info("Cargando justificante {0} de {1}, Expediente {2}.", item.i + 1, total, item.value.Expediente);
+
+                    switch (item.value)
                     {
-                        #region Llamada al Servicio Web de Justificación Bienes y Servicios
+                        case JbsInterchageModel justificanteBienesServicios:
+                            // Mapeo de documentos
+                            if (!string.IsNullOrEmpty(justificanteBienesServicios.NombreFicheroBSFactura))
+                            {
+                                justificanteBienesServicios.FicheroBSFactura = File.ReadAllBytes(justificanteBienesServicios.NombreFicheroBSFactura); //obtenemos los byte[] del fichero a través de la ruta que venga en el csv
+                                justificanteBienesServicios.NombreFicheroBSFactura = Path.GetFileName(justificanteBienesServicios.NombreFicheroBSFactura); //obtenemos el nombre del fichero a través de la ruta que venga en el csv
+                            }
+                            if (!string.IsNullOrEmpty(justificanteBienesServicios.NombreFicheroBSPago))
+                            {
+                                justificanteBienesServicios.FicheroBSPago = File.ReadAllBytes(justificanteBienesServicios.NombreFicheroBSPago); //obtenemos los byte[] del fichero a través de la ruta que venga en el csv
+                                justificanteBienesServicios.NombreFicheroBSPago = Path.GetFileName(justificanteBienesServicios.NombreFicheroBSPago); //obtenemos el nombre del fichero a través de la ruta que venga en el csv
+                            }
+                            if (!string.IsNullOrEmpty(justificanteBienesServicios.NombreFicheroBSOtros))
+                            {
+                                justificanteBienesServicios.FicheroBSOtros = File.ReadAllBytes(justificanteBienesServicios.NombreFicheroBSOtros); //obtenemos los byte[] del fichero a través de la ruta que venga en el csv
+                                justificanteBienesServicios.NombreFicheroBSOtros = Path.GetFileName(justificanteBienesServicios.NombreFicheroBSOtros); //obtenemos el nombre del fichero a través de la ruta que venga en el csv
+                            }
 
-                        var j = (JbsInterchageModel)item.value;
-                        //Carga de documentos múltiples en modelo Justificante de Bienes y Servicios
-                        if (!string.IsNullOrEmpty(j.NombreFicheroBSFactura))
-                        {
-                            j.FicheroBSFactura = File.ReadAllBytes(j.NombreFicheroBSFactura); //obtenemos los byte[] del fichero a través de la ruta que venga en el csv
-                            j.NombreFicheroBSFactura = Path.GetFileName(j.NombreFicheroBSFactura); //obtenemos el nombre del fichero a través de la ruta que venga en el csv
-                        }
-                        if (!string.IsNullOrEmpty(j.NombreFicheroBSPago))
-                        {
-                            j.FicheroBSPago = File.ReadAllBytes(j.NombreFicheroBSPago); //obtenemos los byte[] del fichero a través de la ruta que venga en el csv
-                            j.NombreFicheroBSPago = Path.GetFileName(j.NombreFicheroBSPago); //obtenemos el nombre del fichero a través de la ruta que venga en el csv
-                        }
-                        if (!string.IsNullOrEmpty(j.NombreFicheroBSOtros))
-                        {
-                            j.FicheroBSOtros = File.ReadAllBytes(j.NombreFicheroBSOtros); //obtenemos los byte[] del fichero a través de la ruta que venga en el csv
-                            j.NombreFicheroBSOtros = Path.GetFileName(j.NombreFicheroBSOtros); //obtenemos el nombre del fichero a través de la ruta que venga en el csv
-                        }
-                        _logger.Info("Cargando justificante {0} de {1}, Expediente {2}.", item.i + 1, total, item.value.Expediente);
+                            r = client.LoadJbs(justificanteBienesServicios); //Llamada al método LoadJbs del servicio web justificación
 
-                        r = client.LoadJbs(j); //Llamada al método LoadJbs del servicio web justificación
+                            resultadosEnvio.Add(r);
+                            break;
 
-                        resultadosEnvio.Add(r);
+                        case JpersonalInterchageModel justificantePersonal:
+                            // Mapeo de documentos
+                            if (!string.IsNullOrEmpty(justificantePersonal.NombreFicheroPerNomina))
+                            {
+                                justificantePersonal.FicheroPerNomina = File.ReadAllBytes(justificantePersonal.NombreFicheroPerNomina);
+                                justificantePersonal.NombreFicheroPerNomina = Path.GetFileName(justificantePersonal.NombreFicheroPerNomina);
+                            }
+                            if (!string.IsNullOrEmpty(justificantePersonal.NombreFicheroPerPago))
+                            {
+                                justificantePersonal.FicheroPerPago = File.ReadAllBytes(justificantePersonal.NombreFicheroPerPago);
+                                justificantePersonal.NombreFicheroPerPago = Path.GetFileName(justificantePersonal.NombreFicheroPerPago);
+                            }
+                            if (!string.IsNullOrEmpty(justificantePersonal.NombreFicheroPerOtros))
+                            {
+                                justificantePersonal.FicheroPerOtros = File.ReadAllBytes(justificantePersonal.NombreFicheroPerOtros);
+                                justificantePersonal.NombreFicheroPerOtros = Path.GetFileName(justificantePersonal.NombreFicheroPerOtros);
+                            }
 
-                        #endregion Llamada al Servicio Web de Justificación Bienes y Servicios
-                    }
-                    else if (item.value is JpersonalInterchageModel)
-                    {
-                        #region Llamada al Servicio Web de Justificación Personal
+                            r = client.LoadJpersonal(justificantePersonal); //Llamada al método LoadJpersonal del servicio web justificación
 
-                        var j = (JpersonalInterchageModel)item.value;
-                        //Carga de documentos múltiples en modelo Justificante de Personal
-                        if (!string.IsNullOrEmpty(j.NombreFicheroPerNomina))
-                        {
-                            j.FicheroPerNomina = File.ReadAllBytes(j.NombreFicheroPerNomina);
-                            j.NombreFicheroPerNomina = Path.GetFileName(j.NombreFicheroPerNomina);
-                        }
+                            resultadosEnvio.Add(r);
+                            break;
 
-                        if (!string.IsNullOrEmpty(j.NombreFicheroPerPago))
-                        {
-                            j.FicheroPerPago = File.ReadAllBytes(j.NombreFicheroPerPago);
-                            j.NombreFicheroPerPago = Path.GetFileName(j.NombreFicheroPerPago);
-                        }
+                        case JviajeInterchageModel justificanteViajes:
+                            // Mapeo de documentos
+                            if (!string.IsNullOrEmpty(justificanteViajes.NombreFicheroViajeFactura))
+                            {
+                                justificanteViajes.FicheroViajeFactura = File.ReadAllBytes(justificanteViajes.NombreFicheroViajeFactura);
+                                justificanteViajes.NombreFicheroViajeFactura = Path.GetFileName(justificanteViajes.NombreFicheroViajeFactura);
+                            }
+                            if (!string.IsNullOrEmpty(justificanteViajes.NombreFicheroViajePago))
+                            {
+                                justificanteViajes.FicheroViajePago = File.ReadAllBytes(justificanteViajes.NombreFicheroViajePago);
+                                justificanteViajes.NombreFicheroViajePago = Path.GetFileName(justificanteViajes.NombreFicheroViajePago);
+                            }
+                            if (!string.IsNullOrEmpty(justificanteViajes.NombreFicheroViajeOtros))
+                            {
+                                justificanteViajes.FicheroViajeOtros = File.ReadAllBytes(justificanteViajes.NombreFicheroViajeOtros);
+                                justificanteViajes.NombreFicheroViajeOtros = Path.GetFileName(justificanteViajes.NombreFicheroViajeOtros);
+                            }
 
-                        if (!string.IsNullOrEmpty(j.NombreFicheroPerOtros))
-                        {
-                            j.FicheroPerOtros = File.ReadAllBytes(j.NombreFicheroPerOtros);
-                            j.NombreFicheroPerOtros = Path.GetFileName(j.NombreFicheroPerOtros);
-                        }
-                        r = client.LoadJpersonal(j); //Llamada al método LoadJpersonal del servicio web justificación
+                            r = client.LoadJviajes(justificanteViajes); //Llamada al método LoadJviajes del servicio web justificación
 
-                        resultadosEnvio.Add(r);
+                            resultadosEnvio.Add(r);
+                            break;
 
-                        #endregion Llamada al Servicio Web de Justificación Personal
-                    }
-                    else if (item.value is JviajeInterchageModel)
-                    {
-                        #region Llamada al Servicio Web de Justificación Viaje
-
-                        var j = (JviajeInterchageModel)item.value;
-                        //Carga de documentos múltiples en modelo Justificante de Viaje
-                        if (!string.IsNullOrEmpty(j.NombreFicheroViajeFactura))
-                        {
-                            j.FicheroViajeFactura = File.ReadAllBytes(j.NombreFicheroViajeFactura);
-                            j.NombreFicheroViajeFactura = Path.GetFileName(j.NombreFicheroViajeFactura);
-                        }
-
-                        if (!string.IsNullOrEmpty(j.NombreFicheroViajePago))
-                        {
-                            j.FicheroViajePago = File.ReadAllBytes(j.NombreFicheroViajePago);
-                            j.NombreFicheroViajePago = Path.GetFileName(j.NombreFicheroViajePago);
-                        }
-
-                        if (!string.IsNullOrEmpty(j.NombreFicheroViajeOtros))
-                        {
-                            j.FicheroViajeOtros = File.ReadAllBytes(j.NombreFicheroViajeOtros);
-                            j.NombreFicheroViajeOtros = Path.GetFileName(j.NombreFicheroViajeOtros);
-                        }
-
-                        r = client.LoadJviajes(j); //Llamada al método LoadJviajes del servicio web justificación
-
-                        resultadosEnvio.Add(r);
-
-                        #endregion Llamada al Servicio Web de Justificación Viaje
-                    }
-                    else
-                    {
-                        throw new ArgumentException("Tipo de datos incorrecto.");
+                        default:
+                            throw new ArgumentException("Tipo de datos incorrecto.");
                     }
 
                     _logger.Info("Carga de justificante {0} de {1}, Expediente: {2}. Resultado {3} - {4}", item.i + 1, total, item.value.Expediente, r.ResultadoCarga, r.DescripcionResultado);
@@ -253,9 +216,6 @@ namespace ISCIII.AESEG.ClienteJustificacion.BLL
                 throw;
             }
 
-            #endregion ENVÍO DE DATOS A MÉTODOS DEL SERVICIO WEB JUSTIFICACIÓN
         }
-
-        #endregion MÉTODO DE ENVIO DE DATOS DE JUSTIFICANTES
     }
 }

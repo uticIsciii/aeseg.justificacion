@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ISCIII.AESEG.ClienteJustificacion.Desktop</RootNamespace>
     <AssemblyName>ClienteJustificacionDesktop</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -105,16 +105,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClienteJustificacion\ISCIII.AESEG.ClienteJustificacion.BLL.csproj">
-      <Project>{e75df391-cd85-4520-8212-9c32f2cddef8}</Project>
-      <Name>ISCIII.AESEG.ClienteJustificacion.BLL</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="LogoAeseg.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClienteJustificacion\ISCIII.AESEG.ClienteJustificacion.BLL.csproj">
+      <Project>{e75df391-cd85-4520-8212-9c32f2cddef8}</Project>
+      <Name>ISCIII.AESEG.ClienteJustificacion.BLL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
